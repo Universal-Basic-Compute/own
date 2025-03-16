@@ -1,74 +1,98 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import displacementRiskData from "@/data/displacement-risk.json";
 
 export function DisplacementTab() {
-  const [industry, setIndustry] = useState("technology");
-  const [role, setRole] = useState("software-developer");
+  const [selectedCategory, setSelectedCategory] = useState("Immediate Risk");
+  const [selectedGroup, setSelectedGroup] = useState("Screen-Based Data Processing");
+  const [selectedProfession, setSelectedProfession] = useState("Data Entry Specialists");
+  const [riskData, setRiskData] = useState<any>(null);
 
-  // Sample data - in a real app, this would come from an API or database
-  const displacementData = {
-    technology: {
-      "software-developer": {
-        riskScore: 65,
-        timeframe: "3-5 years",
-        vulnerableSkills: ["Basic coding", "Simple data analysis", "Manual testing"],
-        resilientSkills: ["System architecture", "AI prompt engineering", "Creative problem solving"],
-        recommendations: [
-          "Focus on AI integration skills",
-          "Develop expertise in AI ethics and governance",
-          "Build skills in areas requiring human judgment and creativity"
-        ]
-      },
-      "data-analyst": {
-        riskScore: 78,
-        timeframe: "2-4 years",
-        vulnerableSkills: ["Data cleaning", "Basic visualization", "Standard reporting"],
-        resilientSkills: ["Advanced statistical analysis", "Business strategy", "Narrative development"],
-        recommendations: [
-          "Transition to decision science roles",
-          "Develop AI collaboration skills",
-          "Focus on business insights rather than data processing"
-        ]
+  // Find the selected category data
+  useEffect(() => {
+    const categoryData = displacementRiskData.professionAutomationRisk.find(
+      category => category.riskCategory === selectedCategory
+    );
+    
+    if (categoryData) {
+      const groupData = categoryData.groups.find(
+        group => group.groupName === selectedGroup
+      );
+      
+      if (groupData) {
+        setRiskData({
+          timeframe: categoryData.timeframe,
+          groupName: groupData.groupName,
+          professions: groupData.professions,
+          automationSignals: groupData.automationSignals,
+          automationStages: groupData.automationStages,
+          explanation: groupData.explanation
+        });
       }
-    },
-    finance: {
-      "accountant": {
-        riskScore: 82,
-        timeframe: "2-3 years",
-        vulnerableSkills: ["Bookkeeping", "Tax preparation", "Financial reporting"],
-        resilientSkills: ["Financial strategy", "Client relationships", "Regulatory expertise"],
-        recommendations: [
-          "Specialize in AI-assisted financial strategy",
-          "Develop advisory skills beyond compliance",
-          "Focus on complex regulatory interpretation"
-        ]
-      },
-      "financial-advisor": {
-        riskScore: 55,
-        timeframe: "5-7 years",
-        vulnerableSkills: ["Basic portfolio management", "Standard financial planning"],
-        resilientSkills: ["Behavioral coaching", "Complex financial planning", "Relationship building"],
-        recommendations: [
-          "Emphasize emotional intelligence and client relationships",
-          "Develop expertise in complex financial situations",
-          "Integrate AI tools into your practice"
-        ]
+    }
+  }, [selectedCategory, selectedGroup]);
+
+  // Get all categories from the data
+  const categories = displacementRiskData.professionAutomationRisk.map(
+    category => category.riskCategory
+  );
+
+  // Get groups for the selected category
+  const getGroupsForCategory = (category: string) => {
+    const categoryData = displacementRiskData.professionAutomationRisk.find(
+      c => c.riskCategory === category
+    );
+    return categoryData ? categoryData.groups.map(group => group.groupName) : [];
+  };
+
+  // Get professions for the selected group
+  const getProfessionsForGroup = (category: string, group: string) => {
+    const categoryData = displacementRiskData.professionAutomationRisk.find(
+      c => c.riskCategory === category
+    );
+    if (!categoryData) return [];
+    
+    const groupData = categoryData.groups.find(g => g.groupName === group);
+    return groupData ? groupData.professions : [];
+  };
+
+  // Handle category change
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    const groups = getGroupsForCategory(category);
+    if (groups.length > 0) {
+      setSelectedGroup(groups[0]);
+      const professions = getProfessionsForGroup(category, groups[0]);
+      if (professions.length > 0) {
+        setSelectedProfession(professions[0]);
       }
     }
   };
 
-  const industries = Object.keys(displacementData);
-  const roles = industry ? Object.keys(displacementData[industry as keyof typeof displacementData]) : [];
-  const currentData = industry && role ? 
-    displacementData[industry as keyof typeof displacementData][role as any] : null;
-
-  const getRiskColor = (score: number) => {
-    if (score >= 80) return "text-error";
-    if (score >= 60) return "text-warning";
-    if (score >= 40) return "text-ai-blue";
-    return "text-financial-green";
+  // Handle group change
+  const handleGroupChange = (group: string) => {
+    setSelectedGroup(group);
+    const professions = getProfessionsForGroup(selectedCategory, group);
+    if (professions.length > 0) {
+      setSelectedProfession(professions[0]);
+    }
   };
+
+  // Get risk level based on category
+  const getRiskLevel = (category: string) => {
+    switch (category) {
+      case "Immediate Risk": return { level: "High", color: "text-error", percentage: 90 };
+      case "Near-Term Risk": return { level: "Medium-High", color: "text-warning", percentage: 75 };
+      case "Mid-Term Risk": return { level: "Medium", color: "text-warning", percentage: 60 };
+      case "Longer-Term Risk": return { level: "Medium-Low", color: "text-ai-blue", percentage: 40 };
+      case "Extended Timeline": return { level: "Low", color: "text-financial-green", percentage: 25 };
+      case "Likely To Remain Human-Led": return { level: "Very Low", color: "text-financial-green", percentage: 10 };
+      default: return { level: "Unknown", color: "text-medium-dark", percentage: 50 };
+    }
+  };
+
+  const riskInfo = getRiskLevel(selectedCategory);
 
   return (
     <div className="space-y-8">
@@ -81,33 +105,45 @@ export function DisplacementTab() {
           
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-medium-dark mb-2">Industry</label>
+              <label className="block text-sm font-medium text-medium-dark mb-2">Risk Category</label>
               <select 
-                value={industry}
-                onChange={(e) => {
-                  setIndustry(e.target.value);
-                  setRole(Object.keys(displacementData[e.target.value as keyof typeof displacementData])[0]);
-                }}
+                value={selectedCategory}
+                onChange={(e) => handleCategoryChange(e.target.value)}
                 className="w-full p-3 border border-light-medium dark:border-medium-dark rounded-md bg-light-cloud dark:bg-deep-space"
               >
-                {industries.map((ind) => (
-                  <option key={ind} value={ind}>
-                    {ind.charAt(0).toUpperCase() + ind.slice(1)}
+                {categories.map((category) => (
+                  <option key={category} value={category}>
+                    {category} ({displacementRiskData.professionAutomationRisk.find(c => c.riskCategory === category)?.timeframe})
                   </option>
                 ))}
               </select>
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-medium-dark mb-2">Role</label>
+              <label className="block text-sm font-medium text-medium-dark mb-2">Job Group</label>
               <select 
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
+                value={selectedGroup}
+                onChange={(e) => handleGroupChange(e.target.value)}
                 className="w-full p-3 border border-light-medium dark:border-medium-dark rounded-md bg-light-cloud dark:bg-deep-space"
               >
-                {roles.map((r) => (
-                  <option key={r} value={r}>
-                    {r.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                {getGroupsForCategory(selectedCategory).map((group) => (
+                  <option key={group} value={group}>
+                    {group}
+                  </option>
+                ))}
+              </select>
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-medium-dark mb-2">Profession</label>
+              <select 
+                value={selectedProfession}
+                onChange={(e) => setSelectedProfession(e.target.value)}
+                className="w-full p-3 border border-light-medium dark:border-medium-dark rounded-md bg-light-cloud dark:bg-deep-space"
+              >
+                {getProfessionsForGroup(selectedCategory, selectedGroup).map((profession) => (
+                  <option key={profession} value={profession}>
+                    {profession}
                   </option>
                 ))}
               </select>
@@ -116,12 +152,12 @@ export function DisplacementTab() {
         </div>
         
         <div className="md:w-1/2 bg-light-cloud dark:bg-deep-space/50 rounded-lg p-6">
-          {currentData && (
+          {riskData && (
             <div>
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-h4 font-semibold">Displacement Risk Score</h3>
-                <span className={`text-h2 font-bold ${getRiskColor(currentData.riskScore)}`}>
-                  {currentData.riskScore}%
+                <h3 className="text-h4 font-semibold">Displacement Risk Level</h3>
+                <span className={`text-h2 font-bold ${riskInfo.color}`}>
+                  {riskInfo.level}
                 </span>
               </div>
               
@@ -133,11 +169,11 @@ export function DisplacementTab() {
                 <div className="w-full h-3 bg-light-medium dark:bg-medium-dark rounded-full overflow-hidden">
                   <div 
                     className={`h-full ${
-                      currentData.riskScore >= 80 ? "bg-error" :
-                      currentData.riskScore >= 60 ? "bg-warning" :
-                      currentData.riskScore >= 40 ? "bg-ai-blue" : "bg-financial-green"
+                      riskInfo.percentage >= 80 ? "bg-error" :
+                      riskInfo.percentage >= 60 ? "bg-warning" :
+                      riskInfo.percentage >= 40 ? "bg-ai-blue" : "bg-financial-green"
                     }`}
-                    style={{ width: `${currentData.riskScore}%` }}
+                    style={{ width: `${riskInfo.percentage}%` }}
                   ></div>
                 </div>
               </div>
@@ -148,7 +184,7 @@ export function DisplacementTab() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <span className="font-medium">Estimated Timeframe:</span>
-                  <span>{currentData.timeframe}</span>
+                  <span>{riskData.timeframe}</span>
                 </div>
               </div>
             </div>
@@ -156,55 +192,62 @@ export function DisplacementTab() {
         </div>
       </div>
       
-      {currentData && (
+      {riskData && (
         <div className="grid md:grid-cols-2 gap-6">
           <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-6">
-            <h3 className="text-h4 font-semibold mb-4">Vulnerable Skills</h3>
+            <h3 className="text-h4 font-semibold mb-4">Automation Signals</h3>
             <ul className="space-y-2">
-              {currentData.vulnerableSkills.map((skill, index) => (
+              {riskData.automationSignals.map((signal: string, index: number) => (
                 <li key={index} className="flex items-start">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-error mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-warning mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <span>{skill}</span>
+                  <span>{signal}</span>
                 </li>
               ))}
             </ul>
           </div>
           
           <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-6">
-            <h3 className="text-h4 font-semibold mb-4">Resilient Skills</h3>
-            <ul className="space-y-2">
-              {currentData.resilientSkills.map((skill, index) => (
-                <li key={index} className="flex items-start">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-financial-green mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>{skill}</span>
-                </li>
+            <h3 className="text-h4 font-semibold mb-4">Automation Timeline</h3>
+            <div className="space-y-6">
+              {riskData.automationStages.map((stage: any, index: number) => (
+                <div key={index} className="relative">
+                  {/* Vertical line connecting stages */}
+                  {index < riskData.automationStages.length - 1 && (
+                    <div className="absolute top-10 left-4 w-0.5 h-full -ml-px bg-light-medium dark:bg-medium-dark"></div>
+                  )}
+                  
+                  <div className="flex">
+                    <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-ai-blue text-white z-10">
+                      <span className="text-sm">{index + 1}</span>
+                    </div>
+                    
+                    <div className="ml-4 pb-8">
+                      <div className="font-semibold">{stage.stage}</div>
+                      <p className="text-sm text-medium-dark mt-1">{stage.description}</p>
+                      <div className="mt-2 text-xs text-ai-blue">
+                        {stage.timeframe}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       )}
       
-      {currentData && (
+      {riskData && (
         <div className="bg-gradient-to-r from-ai-blue/10 to-financial-green/10 rounded-lg p-6 border border-ai-blue/20">
-          <h3 className="text-h4 font-semibold mb-4">Recommendations</h3>
-          <ul className="space-y-3">
-            {currentData.recommendations.map((rec, index) => (
-              <li key={index} className="flex items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-ai-blue mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                </svg>
-                <span>{rec}</span>
-              </li>
-            ))}
-          </ul>
+          <h3 className="text-h4 font-semibold mb-4">Automation Impact Analysis</h3>
+          <p className="text-medium-dark dark:text-medium mb-6">
+            {riskData.explanation}
+          </p>
           
           <div className="mt-6 text-center">
             <button className="btn-primary">
-              Get Detailed Transition Plan
+              Get Personalized AI Resilience Plan
             </button>
           </div>
         </div>
