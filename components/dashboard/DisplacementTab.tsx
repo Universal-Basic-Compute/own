@@ -229,16 +229,16 @@ export function DisplacementTab() {
                       <path 
                         d={
                           riskCategory === "Immediate Risk" 
-                            ? "M30,120 C60,120 80,30 370,30" 
+                            ? "M30,120 C60,120 80,30 200,30" // Completes by +10 years (x=200)
                             : riskCategory === "Near-Term Risk" 
-                            ? "M30,120 C80,120 115,30 370,30"
+                            ? "M30,120 C80,120 115,30 200,30" // Completes by +10 years (x=200)
                             : riskCategory === "Mid-Term Risk"
-                            ? "M30,120 C100,120 150,30 370,30"
+                            ? "M30,120 C100,120 150,30 200,30" // Completes by +10 years (x=200)
                             : riskCategory === "Longer-Term Risk"
-                            ? "M30,120 C150,120 200,30 370,30"
+                            ? "M30,120 C150,120 200,30 370,30" // Keeps original timeline
                             : riskCategory === "Extended Timeline"
-                            ? "M30,120 C200,120 250,30 370,30"
-                            : "M30,120 C250,120 300,30 370,30"
+                            ? "M30,120 C200,120 250,30 370,30" // Keeps original timeline
+                            : "M30,120 C250,120 300,30 370,30" // Keeps original timeline
                         }
                         stroke={
                           riskCategory === "Immediate Risk" || riskCategory === "Near-Term Risk"
