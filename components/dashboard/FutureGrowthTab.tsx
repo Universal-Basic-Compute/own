@@ -214,19 +214,19 @@ export function FutureGrowthTab() {
             </div>
           </div>
           
-          <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-4 mb-4">
+          <div className="bg-gradient-to-br from-ai-blue/10 to-deep-space/90 rounded-lg p-4 mb-4 border border-ai-blue/20 shadow-md">
             <div className="text-sm text-medium-dark dark:text-light-medium mb-1">Scenario Description</div>
             <div className="font-medium">{currentScenario.description}</div>
           </div>
           
-          <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-4">
+          <div className="bg-gradient-to-br from-financial-green/10 to-deep-space/90 rounded-lg p-4 border border-financial-green/20 shadow-md">
             <div className="text-sm text-medium-dark dark:text-light-medium mb-1">Monthly Contribution</div>
             <div className="font-medium">${projectionData.monthlyContribution}/month</div>
           </div>
         </div>
         
         <div className="md:w-1/2 grid grid-cols-2 gap-4">
-          <div className="bg-gradient-to-br from-ai-blue/10 to-financial-green/10 rounded-lg p-6 flex flex-col justify-between">
+          <div className="bg-gradient-to-br from-ai-blue/20 to-financial-green/20 rounded-lg p-6 flex flex-col justify-between border border-ai-blue/20 shadow-md">
             <div className="text-sm text-medium-dark dark:text-light-medium">Current Portfolio Value</div>
             <div className="text-h4 font-bold">${projectionData.currentPortfolioValue.toLocaleString()}</div>
           </div>

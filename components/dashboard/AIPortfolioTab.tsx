@@ -58,22 +58,22 @@ export function AIPortfolioTab() {
   return (
     <div className="space-y-8">
       <div className="grid md:grid-cols-4 gap-6">
-        <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-6">
+        <div className="bg-gradient-to-br from-ai-blue/10 to-deep-space/90 rounded-lg p-6 border border-ai-blue/20 shadow-md">
           <h3 className="text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Total Portfolio Value</h3>
           <div className="text-h3 font-bold">${portfolioData.totalValue.toLocaleString()}</div>
         </div>
         
-        <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-6">
+        <div className="bg-gradient-to-br from-financial-green/10 to-deep-space/90 rounded-lg p-6 border border-financial-green/20 shadow-md">
           <h3 className="text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Monthly Passive Income</h3>
           <div className="text-h3 font-bold text-financial-green">${portfolioData.monthlyIncome.toLocaleString()}</div>
         </div>
         
-        <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-6">
+        <div className="bg-gradient-to-br from-ownership-purple/10 to-deep-space/90 rounded-lg p-6 border border-ownership-purple/20 shadow-md">
           <h3 className="text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Annual Yield</h3>
           <div className="text-h3 font-bold text-ai-blue">{portfolioData.annualYield}%</div>
         </div>
         
-        <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-6">
+        <div className="bg-gradient-to-br from-ai-blue/20 to-deep-space/90 rounded-lg p-6 border border-ai-blue/20 shadow-md">
           <h3 className="text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Asset Classes</h3>
           <div className="text-h3 font-bold">{portfolioData.assets.length}</div>
         </div>

@@ -332,7 +332,7 @@ export function DisplacementTab() {
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row gap-6 mb-8">
         <div className="md:w-1/2">
-          <h2 className="text-h3 font-semibold mb-4">When will I be replaced by AI?</h2>
+          <h2 className="text-h3 font-semibold mb-4 bg-gradient-to-r from-ai-blue to-financial-green bg-clip-text text-transparent">When will I be replaced by AI?</h2>
           <p className="text-medium-dark dark:text-light-medium mb-6">
             Understand how AI might impact your current career and when you should prepare for transition.
           </p>
@@ -383,7 +383,7 @@ export function DisplacementTab() {
           </div>
         </div>
         
-        <div className="md:w-1/2 bg-light-cloud dark:bg-deep-space/50 rounded-lg p-6">
+        <div className="md:w-1/2 bg-gradient-to-br from-night-mode to-deep-space/80 rounded-lg p-6 border border-medium-dark/30 shadow-lg">
           {riskData && (
             <div>
               <div className="flex items-center justify-between mb-6">
@@ -444,7 +444,7 @@ export function DisplacementTab() {
       
       {riskData && (
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-6">
+          <div className="bg-gradient-to-br from-ai-blue/10 to-deep-space/90 rounded-lg p-6 border border-ai-blue/20 shadow-md">
             <h3 className="text-h4 font-semibold mb-4">Automation Signals</h3>
             <ul className="space-y-2">
               {riskData.automationSignals.map((signal: string, index: number) => (
@@ -458,7 +458,7 @@ export function DisplacementTab() {
             </ul>
           </div>
           
-          <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-6">
+          <div className="bg-gradient-to-br from-ownership-purple/10 to-deep-space/90 rounded-lg p-6 border border-ownership-purple/20 shadow-md">
             <h3 className="text-h4 font-semibold mb-4">Automation Timeline</h3>
             <div className="space-y-6">
               {riskData.automationStages.map((stage: any, index: number) => (

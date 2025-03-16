@@ -30,7 +30,7 @@ export function CashFlowTab() {
   return (
     <div className="space-y-8">
       <div className="grid md:grid-cols-3 gap-6">
-        <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-6">
+        <div className="bg-gradient-to-br from-ai-blue/10 to-deep-space/90 rounded-lg p-6 border border-ai-blue/20 shadow-md">
           <h3 className="text-h4 font-semibold mb-4">Monthly Net Cash Flow</h3>
           <div className="flex items-end gap-2">
             <span className={`text-h2 font-bold ${netCashFlow >= 0 ? 'text-financial-green' : 'text-error'}`}>
@@ -43,7 +43,7 @@ export function CashFlowTab() {
           </div>
         </div>
         
-        <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-6">
+        <div className="bg-gradient-to-br from-financial-green/10 to-deep-space/90 rounded-lg p-6 border border-financial-green/20 shadow-md">
           <h3 className="text-h4 font-semibold mb-4">Freedom Gap</h3>
           <div className="flex items-end gap-2">
             <span className="text-h2 font-bold text-warning">
@@ -56,7 +56,7 @@ export function CashFlowTab() {
           </div>
         </div>
         
-        <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-6">
+        <div className="bg-gradient-to-br from-ownership-purple/10 to-deep-space/90 rounded-lg p-6 border border-ownership-purple/20 shadow-md">
           <h3 className="text-h4 font-semibold mb-4">Freedom Progress</h3>
           <div className="mb-2">
             <div className="w-full h-4 bg-light-medium dark:bg-medium-dark rounded-full overflow-hidden">

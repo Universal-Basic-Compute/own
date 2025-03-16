@@ -99,17 +99,17 @@ export function IndependenceTrackerTab() {
     <div className="space-y-8">
       <div className="bg-gradient-to-r from-ai-blue/10 to-financial-green/10 rounded-lg p-6 border border-ai-blue/20">
         <div className="grid md:grid-cols-3 gap-6 mb-6">
-          <div className="bg-white dark:bg-night-mode rounded-lg p-4 text-center">
+          <div className="bg-gradient-to-br from-ai-blue/10 to-deep-space/90 rounded-lg p-4 text-center border border-ai-blue/20 shadow-md">
             <h3 className="text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Current Passive Income</h3>
             <div className="text-h3 font-bold text-ai-blue">${independenceData.currentPassiveIncome}/mo</div>
           </div>
           
-          <div className="bg-white dark:bg-night-mode rounded-lg p-4 text-center">
+          <div className="bg-gradient-to-br from-financial-green/10 to-deep-space/90 rounded-lg p-4 text-center border border-financial-green/20 shadow-md">
             <h3 className="text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Target for Freedom</h3>
             <div className="text-h3 font-bold text-financial-green">${independenceData.targetPassiveIncome}/mo</div>
           </div>
           
-          <div className="bg-white dark:bg-night-mode rounded-lg p-4 text-center">
+          <div className="bg-gradient-to-br from-ownership-purple/10 to-deep-space/90 rounded-lg p-4 text-center border border-ownership-purple/20 shadow-md">
             <h3 className="text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Months Remaining</h3>
             <div className="text-h3 font-bold text-ownership-purple">{independenceData.monthsRemaining}</div>
           </div>
