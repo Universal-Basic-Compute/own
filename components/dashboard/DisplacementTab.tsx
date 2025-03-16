@@ -330,7 +330,7 @@ export function DisplacementTab() {
                         textAnchor="middle"
                         fill="#0066FF"
                       >
-                        You are here
+                        Your displacement date
                       </text>
                     </svg>
                   </div>
