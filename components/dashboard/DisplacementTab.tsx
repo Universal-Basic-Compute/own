@@ -315,7 +315,7 @@ export function DisplacementTab() {
         mediaQuery.removeEventListener('change', handleColorSchemeChange);
       };
     }
-  }, [riskCategory]);
+  }, [riskCategory, canvasRef]);
 
   const riskInfo = getRiskLevel(riskCategory);
 
