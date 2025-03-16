@@ -1,60 +1,56 @@
-@import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap');
-
-:root {
-  /* Primary Colors */
-  --ai-blue: #0066FF;
-  --financial-green: #00CC99;
-  --ownership-purple: #6633CC;
-  
-  /* Status Colors */
-  --success: #00E676;
-  --warning: #FFAB00;
-  --error: #FF5252;
-  --info: #2196F3;
-  
-  /* Neutral Colors */
-  --dark: #212121;
-  --medium-dark: #616161;
-  --medium: #9E9E9E;
-  --light-medium: #E0E0E0;
-  --light: #F5F5F5;
-  --white: #FFFFFF;
-  
-  /* Background Colors */
-  --deep-space: #121212;
-  --night-mode: #1E1E1E;
-  --light-cloud: #FAFAFA;
-  --paper-white: #FFFFFF;
-  
-  /* System */
-  --background: var(--paper-white);
-  --foreground: var(--dark);
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: 'Montserrat', var(--font-geist-sans);
-  --font-body: 'Inter', var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--deep-space);
-    --foreground: var(--light);
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap');
 
 @layer base {
+  :root {
+    /* Primary Colors */
+    --ai-blue: 0 102 255; /* #0066FF */
+    --financial-green: 0 204 153; /* #00CC99 */
+    --ownership-purple: 102 51 204; /* #6633CC */
+    
+    /* Status Colors */
+    --success: 0 230 118; /* #00E676 */
+    --warning: 255 171 0; /* #FFAB00 */
+    --error: 255 82 82; /* #FF5252 */
+    --info: 33 150 243; /* #2196F3 */
+    
+    /* Chart & Data Visualization Colors */
+    --data-blue-1: 41 182 246; /* #29B6F6 */
+    --data-green-1: 38 166 154; /* #26A69A */
+    --data-purple-1: 149 117 205; /* #9575CD */
+    --data-blue-2: 92 107 192; /* #5C6BC0 */
+    --data-green-2: 102 187 106; /* #66BB6A */
+    --data-purple-2: 186 104 200; /* #BA68C8 */
+    
+    /* Neutral Colors */
+    --dark: 33 33 33; /* #212121 */
+    --medium-dark: 97 97 97; /* #616161 */
+    --medium: 158 158 158; /* #9E9E9E */
+    --light-medium: 224 224 224; /* #E0E0E0 */
+    --light: 245 245 245; /* #F5F5F5 */
+    
+    /* Background Colors */
+    --deep-space: 18 18 18; /* #121212 */
+    --night-mode: 30 30 30; /* #1E1E1E */
+    --light-cloud: 250 250 250; /* #FAFAFA */
+    --paper-white: 255 255 255; /* #FFFFFF */
+    
+    /* System */
+    --background: var(--paper-white);
+    --foreground: var(--dark);
+    
+    /* Border Radius */
+    --radius: 0.5rem;
+  }
+  
+  .dark {
+    --background: var(--deep-space);
+    --foreground: var(--light);
+  }
+  
   body {
-    background: var(--background);
-    color: var(--foreground);
     font-family: 'Inter', sans-serif;
   }
   
@@ -74,5 +70,35 @@
   
   .card {
     @apply bg-white dark:bg-night-mode rounded-lg shadow-md p-6;
+  }
+  
+  /* Gradient Utilities */
+  .bg-ai-horizon {
+    @apply bg-gradient-to-r from-ai-blue to-ownership-purple;
+  }
+  
+  .bg-digital-dawn {
+    @apply bg-gradient-to-r from-ai-blue to-financial-green;
+  }
+  
+  .bg-growth-path {
+    @apply bg-gradient-to-r from-financial-green to-ownership-purple;
+  }
+  
+  /* Animation Utilities */
+  .transition-standard {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .transition-accelerate {
+    @apply transition-all duration-200 ease-out;
+  }
+  
+  .transition-decelerate {
+    @apply transition-all duration-200 ease-in;
+  }
+  
+  .transition-sharp {
+    @apply transition-all duration-150 ease-in-out;
   }
 }

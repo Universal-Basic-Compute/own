@@ -10,36 +10,36 @@ module.exports = {
     extend: {
       colors: {
         // Primary Colors
-        'ai-blue': '#0066FF',
-        'financial-green': '#00CC99',
-        'ownership-purple': '#6633CC',
+        'ai-blue': 'rgb(var(--ai-blue) / <alpha-value>)',
+        'financial-green': 'rgb(var(--financial-green) / <alpha-value>)',
+        'ownership-purple': 'rgb(var(--ownership-purple) / <alpha-value>)',
         
         // Status Colors
-        'success': '#00E676',
-        'warning': '#FFAB00',
-        'error': '#FF5252',
-        'info': '#2196F3',
+        'success': 'rgb(var(--success) / <alpha-value>)',
+        'warning': 'rgb(var(--warning) / <alpha-value>)',
+        'error': 'rgb(var(--error) / <alpha-value>)',
+        'info': 'rgb(var(--info) / <alpha-value>)',
         
         // Chart & Data Visualization Colors
-        'data-blue-1': '#29B6F6',
-        'data-green-1': '#26A69A',
-        'data-purple-1': '#9575CD',
-        'data-blue-2': '#5C6BC0',
-        'data-green-2': '#66BB6A',
-        'data-purple-2': '#BA68C8',
+        'data-blue-1': 'rgb(var(--data-blue-1) / <alpha-value>)',
+        'data-green-1': 'rgb(var(--data-green-1) / <alpha-value>)',
+        'data-purple-1': 'rgb(var(--data-purple-1) / <alpha-value>)',
+        'data-blue-2': 'rgb(var(--data-blue-2) / <alpha-value>)',
+        'data-green-2': 'rgb(var(--data-green-2) / <alpha-value>)',
+        'data-purple-2': 'rgb(var(--data-purple-2) / <alpha-value>)',
         
         // Neutral Colors
-        'dark': '#212121',
-        'medium-dark': '#616161',
-        'medium': '#9E9E9E',
-        'light-medium': '#E0E0E0',
-        'light': '#F5F5F5',
+        'dark': 'rgb(var(--dark) / <alpha-value>)',
+        'medium-dark': 'rgb(var(--medium-dark) / <alpha-value>)',
+        'medium': 'rgb(var(--medium) / <alpha-value>)',
+        'light-medium': 'rgb(var(--light-medium) / <alpha-value>)',
+        'light': 'rgb(var(--light) / <alpha-value>)',
         
         // Background Colors
-        'deep-space': '#121212',
-        'night-mode': '#1E1E1E',
-        'light-cloud': '#FAFAFA',
-        'paper-white': '#FFFFFF',
+        'deep-space': 'rgb(var(--deep-space) / <alpha-value>)',
+        'night-mode': 'rgb(var(--night-mode) / <alpha-value>)',
+        'light-cloud': 'rgb(var(--light-cloud) / <alpha-value>)',
+        'paper-white': 'rgb(var(--paper-white) / <alpha-value>)',
       },
       fontFamily: {
         'montserrat': ['Montserrat', 'sans-serif'],
