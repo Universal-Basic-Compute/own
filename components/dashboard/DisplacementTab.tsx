@@ -97,6 +97,8 @@ export function DisplacementTab() {
   };
 
   const renderSCurve = (category: string, canvasRef: React.RefObject<HTMLCanvasElement>) => {
+    console.log("Rendering S-Curve with category:", category);
+    console.log("Canvas ref exists:", !!canvasRef.current);
   
   // Add this new function right after the renderSCurve function:
   const renderTestCurve = () => {
