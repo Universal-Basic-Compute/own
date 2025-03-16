@@ -106,6 +106,13 @@ export function DisplacementTab() {
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
+    // Check if dark mode is active
+    const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // Set background color
+    ctx.fillStyle = isDarkMode ? '#1E1E1E' : '#FFFFFF';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
     // Set dimensions
     const width = canvas.width;
     const height = canvas.height;
@@ -397,7 +404,7 @@ export function DisplacementTab() {
                 <div className="bg-white dark:bg-night-mode rounded-lg p-4 border border-light-medium dark:border-medium-dark" style={{ minHeight: "200px" }}>
                   <canvas 
                     ref={canvasRef} 
-                    className="w-full h-48"
+                    className="w-full h-48 bg-white dark:bg-night-mode"
                     style={{ display: "block" }}
                     aria-label="S-curve showing job automation over time"
                   ></canvas>
