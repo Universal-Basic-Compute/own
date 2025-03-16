@@ -9,7 +9,6 @@ export function DisplacementTab() {
   const [riskData, setRiskData] = useState<any>(null);
   const [professionDetails, setProfessionDetails] = useState<string>("");
   const [riskCategory, setRiskCategory] = useState("Immediate Risk");
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Get all job groups across all risk categories
   const getAllJobGroups = () => {
@@ -455,12 +454,140 @@ export function DisplacementTab() {
               <div className="mt-6 mb-6">
                 <h4 className="text-sm font-medium text-light mb-2">Job Automation Curve</h4>
                 <div className="bg-night-mode rounded-lg p-4 border border-medium-dark" style={{ minHeight: "200px" }}>
-                  <canvas 
-                    ref={canvasRef} 
-                    className="w-full h-48 bg-night-mode"
-                    style={{ display: "block" }}
-                    aria-label="S-curve showing job automation over time"
-                  ></canvas>
+                  <div className="w-full h-48 relative">
+                    {/* SVG S-curve */}
+                    <svg width="100%" height="100%" viewBox="0 0 400 150" preserveAspectRatio="none">
+                      {/* Grid lines */}
+                      <g stroke="#333" strokeWidth="0.5" opacity="0.5">
+                        {/* Horizontal grid lines */}
+                        <line x1="30" y1="30" x2="370" y2="30" />
+                        <line x1="30" y1="60" x2="370" y2="60" />
+                        <line x1="30" y1="90" x2="370" y2="90" />
+                        <line x1="30" y1="120" x2="370" y2="120" />
+                
+                        {/* Vertical grid lines */}
+                        <line x1="30" y1="30" x2="30" y2="120" />
+                        <line x1="115" y1="30" x2="115" y2="120" />
+                        <line x1="200" y1="30" x2="200" y2="120" />
+                        <line x1="285" y1="30" x2="285" y2="120" />
+                        <line x1="370" y1="30" x2="370" y2="120" />
+                      </g>
+              
+                      {/* Axes */}
+                      <g stroke="#666" strokeWidth="1">
+                        <line x1="30" y1="30" x2="30" y2="120" />
+                        <line x1="30" y1="120" x2="370" y2="120" />
+                      </g>
+              
+                      {/* S-curve based on risk category */}
+                      <path 
+                        d={
+                          riskCategory === "Immediate Risk" 
+                            ? "M30,120 C60,120 80,30 370,30" 
+                            : riskCategory === "Near-Term Risk" 
+                            ? "M30,120 C80,120 115,30 370,30"
+                            : riskCategory === "Mid-Term Risk"
+                            ? "M30,120 C100,120 150,30 370,30"
+                            : riskCategory === "Longer-Term Risk"
+                            ? "M30,120 C150,120 200,30 370,30"
+                            : riskCategory === "Extended Timeline"
+                            ? "M30,120 C200,120 250,30 370,30"
+                            : "M30,120 C250,120 300,30 370,30"
+                        }
+                        stroke={
+                          riskCategory === "Immediate Risk" || riskCategory === "Near-Term Risk"
+                            ? "#FFAB00" // Warning color
+                            : riskCategory === "Mid-Term Risk"
+                            ? "#0066FF" // AI blue
+                            : "#00CC99" // Financial green
+                        }
+                        strokeWidth="3"
+                        fill="none"
+                      />
+              
+                      {/* Current position marker */}
+                      <circle 
+                        cx={
+                          riskCategory === "Immediate Risk" 
+                            ? "60" 
+                            : riskCategory === "Near-Term Risk" 
+                            ? "90"
+                            : riskCategory === "Mid-Term Risk"
+                            ? "120"
+                            : riskCategory === "Longer-Term Risk"
+                            ? "180"
+                            : riskCategory === "Extended Timeline"
+                            ? "240"
+                            : "300"
+                        }
+                        cy={
+                          riskCategory === "Immediate Risk" 
+                            ? "90" 
+                            : riskCategory === "Near-Term Risk" 
+                            ? "100"
+                            : riskCategory === "Mid-Term Risk"
+                            ? "110"
+                            : riskCategory === "Longer-Term Risk"
+                            ? "115"
+                            : riskCategory === "Extended Timeline"
+                            ? "118"
+                            : "119"
+                        }
+                        r="6"
+                        fill="#0066FF"
+                      />
+              
+                      {/* X-axis labels */}
+                      <text x="30" y="135" fontSize="10" textAnchor="middle" fill="#9CA3AF">Now</text>
+                      <text x="115" y="135" fontSize="10" textAnchor="middle" fill="#9CA3AF">+5 yrs</text>
+                      <text x="200" y="135" fontSize="10" textAnchor="middle" fill="#9CA3AF">+10 yrs</text>
+                      <text x="285" y="135" fontSize="10" textAnchor="middle" fill="#9CA3AF">+15 yrs</text>
+                      <text x="370" y="135" fontSize="10" textAnchor="middle" fill="#9CA3AF">+20 yrs</text>
+              
+                      {/* Y-axis labels */}
+                      <text x="25" y="120" fontSize="10" textAnchor="end" fill="#9CA3AF">0%</text>
+                      <text x="25" y="90" fontSize="10" textAnchor="end" fill="#9CA3AF">25%</text>
+                      <text x="25" y="60" fontSize="10" textAnchor="end" fill="#9CA3AF">50%</text>
+                      <text x="25" y="30" fontSize="10" textAnchor="end" fill="#9CA3AF">75%</text>
+                      <text x="25" y="15" fontSize="10" textAnchor="end" fill="#9CA3AF">100%</text>
+              
+                      {/* "You are here" label */}
+                      <text 
+                        x={
+                          riskCategory === "Immediate Risk" 
+                            ? "60" 
+                            : riskCategory === "Near-Term Risk" 
+                            ? "90"
+                            : riskCategory === "Mid-Term Risk"
+                            ? "120"
+                            : riskCategory === "Longer-Term Risk"
+                            ? "180"
+                            : riskCategory === "Extended Timeline"
+                            ? "240"
+                            : "300"
+                        }
+                        y={
+                          riskCategory === "Immediate Risk" 
+                            ? "80" 
+                            : riskCategory === "Near-Term Risk" 
+                            ? "90"
+                            : riskCategory === "Mid-Term Risk"
+                            ? "100"
+                            : riskCategory === "Longer-Term Risk"
+                            ? "105"
+                            : riskCategory === "Extended Timeline"
+                            ? "108"
+                            : "109"
+                        }
+                        fontSize="10"
+                        fontWeight="bold"
+                        textAnchor="middle"
+                        fill="#0066FF"
+                      >
+                        You are here
+                      </text>
+                    </svg>
+                  </div>
                 </div>
                 <p className="text-xs text-light mt-2">
                   This S-curve shows the projected percentage of jobs in your field that will be automated over time.
@@ -468,49 +595,6 @@ export function DisplacementTab() {
                 </p>
               </div>
               
-              <div className="mt-6 mb-6">
-                <h4 className="text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Test Curve</h4>
-                <div className="bg-white dark:bg-night-mode rounded-lg p-4 border border-light-medium dark:border-medium-dark" style={{ height: "200px" }}>
-                  <canvas 
-                    id="testCanvas"
-                    width="400"
-                    height="150"
-                    className="w-full h-full bg-white"
-                    style={{ display: "block" }}
-                  ></canvas>
-                </div>
-                <button 
-                  className="mt-2 px-4 py-2 bg-ai-blue text-white rounded-md"
-                  onClick={() => {
-                    const canvas = document.getElementById('testCanvas') as HTMLCanvasElement;
-                    if (canvas) {
-                      const ctx = canvas.getContext('2d');
-                      if (ctx) {
-                        // Clear canvas
-                        ctx.clearRect(0, 0, canvas.width, canvas.height);
-                        ctx.fillStyle = '#FFFFFF';
-                        ctx.fillRect(0, 0, canvas.width, canvas.height);
-                        
-                        // Draw a simple curve
-                        ctx.beginPath();
-                        ctx.strokeStyle = '#FF0000';
-                        ctx.lineWidth = 5;
-                        ctx.moveTo(50, canvas.height - 50);
-                        ctx.quadraticCurveTo(canvas.width/2, 50, canvas.width - 50, canvas.height - 50);
-                        ctx.stroke();
-                        
-                        // Add a circle
-                        ctx.beginPath();
-                        ctx.fillStyle = '#0066FF';
-                        ctx.arc(canvas.width/2, canvas.height/2, 20, 0, 2 * Math.PI);
-                        ctx.fill();
-                      }
-                    }
-                  }}
-                >
-                  Draw Test Curve
-                </button>
-              </div>
               
               <div className="mb-6">
                 <div className="flex items-center gap-2 mb-2">
