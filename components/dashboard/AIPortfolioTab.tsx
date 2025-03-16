@@ -142,7 +142,7 @@ export function AIPortfolioTab() {
                 {portfolioData.assets.map((asset, index) => {
                   let rotation = 0;
                   for (let i = 0; i < index; i++) {
-                    rotation += portfolioData.assets[i].percentage * 3.6; // 3.6 degrees per percentage point
+                    rotation += (portfolioData.assets[i].percentage || 0) * 3.6; // 3.6 degrees per percentage point
                   }
                   
                   return (

@@ -58,7 +58,7 @@ export function DisplacementTab() {
         });
         
         // Cast professionDetails to our type with index signature
-        const details = groupData.professionDetails as ProfessionDetails;
+        const details = groupData.professionDetails as unknown as ProfessionDetails;
         if (details && details[selectedProfession]) {
           setProfessionDetails(details[selectedProfession]);
         } else {
