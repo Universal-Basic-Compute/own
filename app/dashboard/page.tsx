@@ -38,9 +38,10 @@ export default function DashboardPage() {
   return (
     <div className="container mx-auto px-4 py-8 relative">
       {/* Add colorful background elements */}
-      <div className="absolute top-0 left-0 w-32 h-32 bg-ai-blue/10 rounded-full filter blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-ownership-purple/10 rounded-full filter blur-3xl"></div>
-      <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-financial-green/10 rounded-full filter blur-3xl"></div>
+      <div className="absolute top-0 left-0 w-64 h-64 bg-ai-blue/20 rounded-full filter blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-ownership-purple/20 rounded-full filter blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-financial-green/20 rounded-full filter blur-3xl"></div>
+      <div className="absolute bottom-1/4 left-1/4 w-48 h-48 bg-warning/15 rounded-full filter blur-3xl"></div>
       <div className="relative z-10">
       <div className="mb-8">
         <h1 className="text-h1 font-bold mb-4 bg-gradient-to-r from-ai-blue via-financial-green to-ownership-purple bg-clip-text text-transparent">
@@ -52,7 +53,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Tab Navigation */}
-      <div className="mb-6 border-b border-light-medium/30 dark:border-medium-dark/30 bg-gradient-to-r from-deep-space/50 via-night-mode/50 to-deep-space/50 rounded-t-lg p-1">
+      <div className="mb-6 border-b border-light-medium/30 dark:border-medium-dark/30 bg-gradient-to-r from-ai-blue/20 via-ownership-purple/20 to-financial-green/20 rounded-t-lg p-1">
         <div className="flex overflow-x-auto">
           {tabs.map((tab) => (
             <button
@@ -60,8 +61,8 @@ export default function DashboardPage() {
               onClick={() => setActiveTab(tab.id)}
               className={`px-6 py-3 font-medium text-sm transition-all whitespace-nowrap rounded-t-lg ${
                 activeTab === tab.id
-                  ? "bg-gradient-to-r from-ai-blue/20 to-financial-green/20 text-white border-b-2 border-financial-green"
-                  : "text-medium-dark hover:bg-night-mode/50 dark:text-medium dark:hover:text-light"
+                  ? "bg-gradient-to-r from-ai-blue/30 to-financial-green/30 text-white border-b-2 border-financial-green"
+                  : "text-medium-dark hover:bg-ownership-purple/20 dark:text-medium dark:hover:text-light"
               }`}
             >
               {tab.label}
@@ -71,8 +72,11 @@ export default function DashboardPage() {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-gradient-to-br from-night-mode to-deep-space rounded-lg shadow-lg border border-medium-dark/30 p-6">
-        {renderTabContent()}
+      <div className="bg-gradient-to-br from-night-mode via-deep-space/90 to-deep-space rounded-lg shadow-lg border border-medium-dark/30 p-6 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-ai-blue/5 via-ownership-purple/5 to-financial-green/5 opacity-50"></div>
+        <div className="relative z-10">
+          {renderTabContent()}
+        </div>
       </div>
     </div>
     </div>

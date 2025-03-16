@@ -184,32 +184,57 @@ export function DisplacementTab() {
       case "Immediate Risk":
         inflectionPoint = 0.15; // Early inflection
         steepness = 8; // Steeper curve
-        ctx.strokeStyle = '#FF5252'; // Error color
+        
+        // Create gradient for the curve
+        const immediateGradient = ctx.createLinearGradient(padding, 0, width - padding, 0);
+        immediateGradient.addColorStop(0, '#FF5252'); // Error color
+        immediateGradient.addColorStop(1, '#FFAB00'); // Warning color
+        ctx.strokeStyle = immediateGradient;
         break;
       case "Near-Term Risk":
         inflectionPoint = 0.25;
         steepness = 7;
-        ctx.strokeStyle = '#FFAB00'; // Warning color
+        
+        const nearTermGradient = ctx.createLinearGradient(padding, 0, width - padding, 0);
+        nearTermGradient.addColorStop(0, '#FFAB00'); // Warning color
+        nearTermGradient.addColorStop(1, '#0066FF'); // AI blue
+        ctx.strokeStyle = nearTermGradient;
         break;
       case "Mid-Term Risk":
         inflectionPoint = 0.4;
         steepness = 6;
-        ctx.strokeStyle = '#FFAB00'; // Warning color
+        
+        const midTermGradient = ctx.createLinearGradient(padding, 0, width - padding, 0);
+        midTermGradient.addColorStop(0, '#0066FF'); // AI blue
+        midTermGradient.addColorStop(1, '#00CC99'); // Financial green
+        ctx.strokeStyle = midTermGradient;
         break;
       case "Longer-Term Risk":
         inflectionPoint = 0.6;
         steepness = 5;
-        ctx.strokeStyle = '#0066FF'; // AI blue
+        
+        const longerTermGradient = ctx.createLinearGradient(padding, 0, width - padding, 0);
+        longerTermGradient.addColorStop(0, '#00CC99'); // Financial green
+        longerTermGradient.addColorStop(1, '#6633CC'); // Ownership purple
+        ctx.strokeStyle = longerTermGradient;
         break;
       case "Extended Timeline":
         inflectionPoint = 0.75;
         steepness = 4;
-        ctx.strokeStyle = '#00CC99'; // Financial green
+        
+        const extendedGradient = ctx.createLinearGradient(padding, 0, width - padding, 0);
+        extendedGradient.addColorStop(0, '#6633CC'); // Ownership purple
+        extendedGradient.addColorStop(1, '#00CC99'); // Financial green
+        ctx.strokeStyle = extendedGradient;
         break;
       case "Likely To Remain Human-Led":
         inflectionPoint = 0.85;
         steepness = 3;
-        ctx.strokeStyle = '#00CC99'; // Financial green
+        
+        const likelyGradient = ctx.createLinearGradient(padding, 0, width - padding, 0);
+        likelyGradient.addColorStop(0, '#00CC99'); // Financial green
+        likelyGradient.addColorStop(1, '#0066FF'); // AI blue
+        ctx.strokeStyle = likelyGradient;
         break;
       default:
         ctx.strokeStyle = '#616161'; // Medium dark
@@ -332,7 +357,7 @@ export function DisplacementTab() {
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row gap-6 mb-8">
         <div className="md:w-1/2">
-          <h2 className="text-h3 font-semibold mb-4 bg-gradient-to-r from-ai-blue to-financial-green bg-clip-text text-transparent">When will I be replaced by AI?</h2>
+          <h2 className="text-h3 font-semibold mb-4 bg-gradient-to-r from-ai-blue via-ownership-purple to-financial-green bg-clip-text text-transparent">When will I be replaced by AI?</h2>
           <p className="text-medium-dark dark:text-light-medium mb-6">
             Understand how AI might impact your current career and when you should prepare for transition.
           </p>
@@ -383,12 +408,19 @@ export function DisplacementTab() {
           </div>
         </div>
         
-        <div className="md:w-1/2 bg-gradient-to-br from-night-mode to-deep-space/80 rounded-lg p-6 border border-medium-dark/30 shadow-lg">
+        <div className="md:w-1/2 bg-gradient-to-br from-night-mode via-ownership-purple/10 to-deep-space/80 rounded-lg p-6 border border-medium-dark/30 shadow-lg">
           {riskData && (
             <div>
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-h4 font-semibold">Displacement Risk Level</h3>
-                <span className={`text-h2 font-bold ${riskInfo.color}`}>
+                <span className={`text-h2 font-bold ${
+                  riskInfo.level === "High" ? "text-error" : 
+                  riskInfo.level === "Medium-High" ? "text-warning" : 
+                  riskInfo.level === "Medium" ? "text-warning" : 
+                  riskInfo.level === "Medium-Low" ? "text-ai-blue" : 
+                  riskInfo.level === "Low" ? "text-financial-green" : 
+                  riskInfo.level === "Very Low" ? "text-financial-green" : "text-medium-dark"
+                }`}>
                   {riskInfo.level}
                 </span>
               </div>
@@ -401,9 +433,9 @@ export function DisplacementTab() {
                 <div className="w-full h-3 bg-light-medium dark:bg-medium-dark rounded-full overflow-hidden">
                   <div 
                     className={`h-full ${
-                      riskInfo.percentage >= 80 ? "bg-error" :
-                      riskInfo.percentage >= 60 ? "bg-warning" :
-                      riskInfo.percentage >= 40 ? "bg-ai-blue" : "bg-financial-green"
+                      riskInfo.percentage >= 80 ? "bg-gradient-to-r from-error to-warning" :
+                      riskInfo.percentage >= 60 ? "bg-gradient-to-r from-warning to-ai-blue" :
+                      riskInfo.percentage >= 40 ? "bg-gradient-to-r from-ai-blue to-financial-green" : "bg-gradient-to-r from-financial-green to-ownership-purple"
                     }`}
                     style={{ width: `${riskInfo.percentage}%` }}
                   ></div>
