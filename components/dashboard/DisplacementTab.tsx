@@ -134,6 +134,8 @@ export function DisplacementTab() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     
+    console.log("Canvas dimensions:", canvas.width, "x", canvas.height);
+    
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
@@ -307,6 +309,8 @@ export function DisplacementTab() {
   };
 
   useEffect(() => {
+    console.log("Effect running with riskCategory:", riskCategory);
+    
     if (canvasRef.current && riskCategory) {
       const handleResize = () => {
         if (!canvasRef.current) return;
@@ -315,16 +319,20 @@ export function DisplacementTab() {
         const canvas = canvasRef.current;
         const rect = canvas.getBoundingClientRect();
         
+        console.log("Canvas rect:", rect.width, "x", rect.height);
+        
         // Set the actual canvas dimensions (important for proper rendering)
-        canvas.width = rect.width;
-        canvas.height = rect.height;
+        canvas.width = rect.width || 300; // Provide fallback width
+        canvas.height = rect.height || 150; // Provide fallback height
+        
+        console.log("Set canvas dimensions to:", canvas.width, "x", canvas.height);
         
         // Render the S-curve
         renderSCurve(riskCategory, canvasRef);
       };
       
-      // Initial render
-      handleResize();
+      // Initial render - add a small delay to ensure the canvas is in the DOM
+      setTimeout(handleResize, 100);
       
       // Add listener for window resize
       window.addEventListener('resize', handleResize);
