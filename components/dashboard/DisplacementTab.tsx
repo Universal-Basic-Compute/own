@@ -315,7 +315,7 @@ export function DisplacementTab() {
         mediaQuery.removeEventListener('change', handleColorSchemeChange);
       };
     }
-  }, [riskCategory, canvasRef]);
+  }, [riskCategory]); // Removed canvasRef from dependencies as it's a stable ref
 
   const riskInfo = getRiskLevel(riskCategory);
 
