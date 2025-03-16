@@ -85,7 +85,11 @@ export function OnboardingStep({
             {step.options.map((option) => (
               <label
                 key={option.value}
-                className="flex items-start p-3 border border-light-medium rounded-md cursor-pointer hover:border-ai-blue transition-colors"
+                className={`flex items-start p-4 border ${
+                  value === option.value 
+                    ? "border-ai-blue bg-ai-blue/5" 
+                    : "border-light-medium"
+                } rounded-md cursor-pointer hover:border-ai-blue transition-colors`}
               >
                 <input
                   type="radio"
@@ -95,7 +99,7 @@ export function OnboardingStep({
                   onChange={handleChange}
                   className="mt-1 text-ai-blue focus:ring-financial-green"
                 />
-                <span className="ml-3">{option.label}</span>
+                <span className="ml-3 font-medium">{option.label}</span>
               </label>
             ))}
           </div>
@@ -106,7 +110,11 @@ export function OnboardingStep({
             {step.options.map((option) => (
               <label
                 key={option.value}
-                className="flex items-start p-3 border border-light-medium rounded-md cursor-pointer hover:border-ai-blue transition-colors"
+                className={`flex items-start p-4 border ${
+                  value.includes(option.value) 
+                    ? "border-ai-blue bg-ai-blue/5" 
+                    : "border-light-medium"
+                } rounded-md cursor-pointer hover:border-ai-blue transition-colors`}
               >
                 <input
                   type="checkbox"
@@ -116,7 +124,7 @@ export function OnboardingStep({
                   onChange={handleChange}
                   className="mt-1 text-ai-blue focus:ring-financial-green"
                 />
-                <span className="ml-3">{option.label}</span>
+                <span className="ml-3 font-medium">{option.label}</span>
               </label>
             ))}
           </div>
@@ -169,6 +177,7 @@ export function OnboardingStep({
                 ? "bg-gradient-to-r from-financial-green to-ownership-purple"
                 : "bg-gradient-to-r from-ai-blue to-financial-green"
             } hover:opacity-90 transition-opacity`}
+            disabled={step.inputType && !value}
           >
             {isLastStep ? "Complete" : "Continue"}
           </button>
