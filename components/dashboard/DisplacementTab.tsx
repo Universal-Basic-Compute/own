@@ -105,19 +105,19 @@ export function DisplacementTab() {
     
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
+    
     // Check if dark mode is active
     const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  
+    
     // Set background color
     ctx.fillStyle = isDarkMode ? '#1E1E1E' : '#FFFFFF';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
+    
     // Set dimensions
     const width = canvas.width;
     const height = canvas.height;
     const padding = 30;
-  
+    
     // Set colors based on theme
     const axisColor = isDarkMode ? '#6B7280' : '#E0E0E0'; // Medium gray for dark mode, light gray for light mode
     const textColor = isDarkMode ? '#9CA3AF' : '#616161'; // Lighter gray for dark mode, darker gray for light mode
@@ -173,78 +173,48 @@ export function DisplacementTab() {
     });
     ctx.stroke();
     
-    // Draw S-curve based on risk category
-    ctx.beginPath();
-    
     // Different curve parameters based on risk category
     let inflectionPoint = 0.5; // Default (mid-point)
     let steepness = 5; // Default steepness
+    let curveColor = '#616161'; // Default color
     
     switch(category) {
       case "Immediate Risk":
         inflectionPoint = 0.15; // Early inflection
         steepness = 8; // Steeper curve
-        
-        // Create gradient for the curve
-        const immediateGradient = ctx.createLinearGradient(padding, 0, width - padding, 0);
-        immediateGradient.addColorStop(0, '#FF5252'); // Error color
-        immediateGradient.addColorStop(1, '#FFAB00'); // Warning color
-        ctx.strokeStyle = immediateGradient;
+        curveColor = '#FF5252'; // Error color
         break;
       case "Near-Term Risk":
         inflectionPoint = 0.25;
         steepness = 7;
-        
-        const nearTermGradient = ctx.createLinearGradient(padding, 0, width - padding, 0);
-        nearTermGradient.addColorStop(0, '#FFAB00'); // Warning color
-        nearTermGradient.addColorStop(1, '#0066FF'); // AI blue
-        ctx.strokeStyle = nearTermGradient;
+        curveColor = '#FFAB00'; // Warning color
         break;
       case "Mid-Term Risk":
         inflectionPoint = 0.4;
         steepness = 6;
-        
-        const midTermGradient = ctx.createLinearGradient(padding, 0, width - padding, 0);
-        midTermGradient.addColorStop(0, '#0066FF'); // AI blue
-        midTermGradient.addColorStop(1, '#00CC99'); // Financial green
-        ctx.strokeStyle = midTermGradient;
+        curveColor = '#FFAB00'; // Warning color
         break;
       case "Longer-Term Risk":
         inflectionPoint = 0.6;
         steepness = 5;
-        
-        const longerTermGradient = ctx.createLinearGradient(padding, 0, width - padding, 0);
-        longerTermGradient.addColorStop(0, '#00CC99'); // Financial green
-        longerTermGradient.addColorStop(1, '#6633CC'); // Ownership purple
-        ctx.strokeStyle = longerTermGradient;
+        curveColor = '#0066FF'; // AI blue
         break;
       case "Extended Timeline":
         inflectionPoint = 0.75;
         steepness = 4;
-        
-        const extendedGradient = ctx.createLinearGradient(padding, 0, width - padding, 0);
-        extendedGradient.addColorStop(0, '#6633CC'); // Ownership purple
-        extendedGradient.addColorStop(1, '#00CC99'); // Financial green
-        ctx.strokeStyle = extendedGradient;
+        curveColor = '#00CC99'; // Financial green
         break;
       case "Likely To Remain Human-Led":
         inflectionPoint = 0.85;
         steepness = 3;
-        
-        const likelyGradient = ctx.createLinearGradient(padding, 0, width - padding, 0);
-        likelyGradient.addColorStop(0, '#00CC99'); // Financial green
-        likelyGradient.addColorStop(1, '#0066FF'); // AI blue
-        ctx.strokeStyle = likelyGradient;
+        curveColor = '#00CC99'; // Financial green
         break;
-      default:
-        ctx.strokeStyle = '#616161'; // Medium dark
     }
     
-    // Draw the S-curve
-    ctx.lineWidth = 3;
-    
-    // Make sure we're starting a new path
+    // Draw the S-curve with a solid color instead of gradient
     ctx.beginPath();
+    ctx.strokeStyle = curveColor;
+    ctx.lineWidth = 3;
     
     // Draw the actual curve points
     for (let i = 0; i <= width - 2 * padding; i++) {
@@ -262,8 +232,6 @@ export function DisplacementTab() {
         ctx.lineTo(x, y);
       }
     }
-    
-    // Make sure we're actually drawing the path
     ctx.stroke();
     
     // Add current position marker based on risk category
