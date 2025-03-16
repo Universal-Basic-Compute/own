@@ -12,6 +12,51 @@ export function Visualization({ type, data, currentStepId }: VisualizationProps)
   
   const renderVisualization = () => {
     switch (type) {
+      case "ai-transition":
+        return (
+          <div className="visualization-container">
+            <div className="text-center mb-4">
+              <h3 className="text-xl font-semibold mb-2">AI Asset Income vs. Traditional Jobs</h3>
+              <p className="text-medium-dark">Building resilience through investment income</p>
+            </div>
+            <div className="bg-gradient-to-br from-white to-light-cloud dark:from-night-mode dark:to-deep-space rounded-lg p-6 border border-light-medium dark:border-medium-dark shadow-sm">
+              <div className="h-64 flex flex-col justify-center">
+                <div className="relative h-40 mb-4">
+                  {/* Traditional Jobs Line - declining */}
+                  <div className="absolute top-0 left-0 w-full h-full flex items-center">
+                    <div className="w-full h-0.5 bg-error relative">
+                      <div className="absolute left-0 top-0 h-24 w-0.5 bg-error"></div>
+                      <div className="absolute right-0 bottom-0 h-24 w-0.5 bg-error"></div>
+                      <div className="absolute -top-6 left-0 text-sm text-error font-medium">Traditional Jobs</div>
+                      <svg className="absolute -bottom-6 right-0" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 5L9 19" stroke="#FF5252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M9 19L3 13" stroke="#FF5252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                  
+                  {/* AI Asset Income Line - increasing */}
+                  <div className="absolute top-0 left-0 w-full h-full flex items-center">
+                    <div className="w-full h-0.5 bg-financial-green relative">
+                      <div className="absolute left-0 bottom-0 h-24 w-0.5 bg-financial-green"></div>
+                      <div className="absolute right-0 top-0 h-24 w-0.5 bg-financial-green"></div>
+                      <div className="absolute -bottom-6 left-0 text-sm text-financial-green font-medium">AI Asset Income</div>
+                      <svg className="absolute -top-6 right-0" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 19L9 5" stroke="#00CC99" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M9 5L3 11" stroke="#00CC99" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="text-center mt-4">
+                  <p className="text-medium-dark dark:text-medium">As traditional employment becomes more uncertain, AI asset income provides growing financial stability.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+        
       case "goals":
         return (
           <div className="visualization-container">

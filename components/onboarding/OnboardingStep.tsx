@@ -91,6 +91,12 @@ export function OnboardingStep({
       </p>
       
       <form onSubmit={handleSubmit} className="space-y-6">
+        {step.inputType === "info-card" && step.content && (
+          <div className="bg-gradient-to-br from-white to-light-cloud dark:from-night-mode dark:to-deep-space rounded-lg p-6 border border-light-medium dark:border-medium-dark shadow-sm">
+            <div className="prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: step.content }}></div>
+          </div>
+        )}
+        
         {step.inputType === "radio" && step.options && (
           <div className="space-y-3">
             {step.options.map((option) => (

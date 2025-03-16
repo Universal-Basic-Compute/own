@@ -8,16 +8,29 @@ import { Visualization } from "./Visualization";
 // Define the steps for the onboarding process
 const STEPS = [
   {
-    id: "financial-goals",
-    title: "Financial Goals",
-    question: "What are your primary financial independence goals?",
-    options: [
-      { value: "early-retirement", label: "Early Retirement" },
-      { value: "passive-income", label: "Generate Passive Income" },
-      { value: "wealth-building", label: "Build Long-term Wealth" },
-      { value: "side-hustle", label: "Create a Profitable Side Hustle" },
-    ],
-    visualizationType: "goals",
+    id: "ai-transition",
+    title: "AI Transition Strategy",
+    question: "As AI transforms the job market, building investment-based income is crucial for financial security.",
+    inputType: "info-card", // Custom type for information display
+    content: `
+      <div class="space-y-4">
+        <p>The <strong>AI Great Replacement</strong> is rapidly changing the nature of work, with many traditional jobs becoming automated or transformed.</p>
+        
+        <p>Own.ai helps you build financial resilience through strategic AI asset ownership, creating passive income streams that aren't dependent on traditional employment.</p>
+        
+        <p>By investing in AI assets like UBC tokens, COMPUTE tokens, Swarm shares, and KinKong investments, you can:</p>
+        
+        <ul class="list-disc pl-5 space-y-2">
+          <li>Generate consistent passive income</li>
+          <li>Benefit from AI growth rather than being displaced by it</li>
+          <li>Achieve financial independence regardless of job market changes</li>
+          <li>Build long-term wealth through appreciating digital assets</li>
+        </ul>
+        
+        <p class="font-semibold">Let's create your personalized AI asset investment strategy to secure your financial future.</p>
+      </div>
+    `,
+    visualizationType: "ai-transition",
   },
   {
     id: "monthly-expenses",
