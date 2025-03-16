@@ -19,7 +19,7 @@ export function Visualization({ type, data, currentStepId }: VisualizationProps)
               <h3 className="text-xl font-semibold mb-2">Your Financial Journey</h3>
               <p className="text-medium-dark">Visualizing your path to financial independence</p>
             </div>
-            <div className="bg-light rounded-lg p-6 border border-light-medium">
+            <div className="bg-gradient-to-br from-white to-light-cloud dark:from-night-mode dark:to-deep-space rounded-lg p-6 border border-light-medium dark:border-medium-dark shadow-sm">
               <div className="h-64 flex items-center justify-center">
                 <div className="text-center">
                   <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-r from-ai-blue to-financial-green flex items-center justify-center">
@@ -41,7 +41,7 @@ export function Visualization({ type, data, currentStepId }: VisualizationProps)
               <h3 className="text-xl font-semibold mb-2">Monthly Expense Breakdown</h3>
               <p className="text-medium-dark">Understanding your current financial situation</p>
             </div>
-            <div className="bg-light rounded-lg p-6 border border-light-medium">
+            <div className="bg-gradient-to-br from-white to-light-cloud dark:from-night-mode dark:to-deep-space rounded-lg p-6 border border-light-medium dark:border-medium-dark shadow-sm">
               <div className="h-64 flex items-center justify-center">
                 {data["monthly-expenses"] ? (
                   <div className="w-full">
@@ -97,7 +97,7 @@ export function Visualization({ type, data, currentStepId }: VisualizationProps)
               <h3 className="text-xl font-semibold mb-2">Your Asset Portfolio</h3>
               <p className="text-medium-dark">Current diversification of your investments</p>
             </div>
-            <div className="bg-light rounded-lg p-6 border border-light-medium">
+            <div className="bg-gradient-to-br from-white to-light-cloud dark:from-night-mode dark:to-deep-space rounded-lg p-6 border border-light-medium dark:border-medium-dark shadow-sm">
               <div className="h-64 flex items-center justify-center">
                 {data["current-assets"] && data["current-assets"].length > 0 ? (
                   <div className="w-full">
@@ -159,7 +159,7 @@ export function Visualization({ type, data, currentStepId }: VisualizationProps)
               <h3 className="text-xl font-semibold mb-2">Growth Projection</h3>
               <p className="text-medium-dark">Potential growth based on your strategy</p>
             </div>
-            <div className="bg-light rounded-lg p-6 border border-light-medium">
+            <div className="bg-gradient-to-br from-white to-light-cloud dark:from-night-mode dark:to-deep-space rounded-lg p-6 border border-light-medium dark:border-medium-dark shadow-sm">
               <div className="h-64 flex items-center justify-center">
                 {data["growth-outlook"] ? (
                   <div className="w-full">
@@ -212,7 +212,7 @@ export function Visualization({ type, data, currentStepId }: VisualizationProps)
               <h3 className="text-xl font-semibold mb-2">Investment Impact</h3>
               <p className="text-medium-dark">How your monthly investment grows over time</p>
             </div>
-            <div className="bg-light rounded-lg p-6 border border-light-medium">
+            <div className="bg-gradient-to-br from-white to-light-cloud dark:from-night-mode dark:to-deep-space rounded-lg p-6 border border-light-medium dark:border-medium-dark shadow-sm">
               <div className="h-64 flex items-center justify-center">
                 {data["investment-capacity"] ? (
                   <div className="w-full">
@@ -272,7 +272,7 @@ export function Visualization({ type, data, currentStepId }: VisualizationProps)
               <h3 className="text-xl font-semibold mb-2">Your Financial Independence Plan</h3>
               <p className="text-medium-dark">Personalized roadmap to financial freedom</p>
             </div>
-            <div className="bg-light rounded-lg p-6 border border-light-medium">
+            <div className="bg-gradient-to-br from-white to-light-cloud dark:from-night-mode dark:to-deep-space rounded-lg p-6 border border-light-medium dark:border-medium-dark shadow-sm">
               <div className="h-64 overflow-auto">
                 {Object.keys(data).length >= 5 ? (
                   <div className="space-y-4">
@@ -355,7 +355,7 @@ export function Visualization({ type, data, currentStepId }: VisualizationProps)
   };
   
   return (
-    <div className="bg-white dark:bg-night-mode rounded-lg shadow-md p-4 h-full">
+    <div className="bg-white dark:bg-night-mode rounded-lg shadow-md p-4 h-full border border-light-medium/50 dark:border-medium-dark/50">
       {renderVisualization()}
     </div>
   );

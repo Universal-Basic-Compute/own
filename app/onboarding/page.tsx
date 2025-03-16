@@ -4,16 +4,21 @@ import { OnboardingForm } from "@/components/onboarding/OnboardingForm";
 
 export default function OnboardingPage() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="text-center mb-12">
-        <h1 className="text-h1 font-bold mb-4 bg-gradient-to-r from-ai-blue via-financial-green to-ownership-purple bg-clip-text text-transparent">
-          Your Path to Financial Independence
-        </h1>
-        <p className="text-body-1 text-medium-dark dark:text-medium max-w-2xl mx-auto">
-          Complete this personalized assessment to create your AI asset ownership roadmap and start your journey toward financial freedom.
-        </p>
+    <div className="container mx-auto px-4 py-8 relative">
+      {/* Add subtle background pattern */}
+      <div className="absolute inset-0 bg-gradient-to-br from-ai-blue/5 to-financial-green/5 pointer-events-none"></div>
+      
+      <div className="relative z-10">
+        <div className="text-center mb-12">
+          <h1 className="text-h1 font-bold mb-4 bg-gradient-to-r from-ai-blue via-financial-green to-ownership-purple bg-clip-text text-transparent">
+            Your Path to Financial Independence
+          </h1>
+          <p className="text-body-1 text-medium-dark dark:text-medium max-w-2xl mx-auto">
+            Complete this personalized assessment to create your AI asset ownership roadmap and start your journey toward financial freedom.
+          </p>
+        </div>
+        <OnboardingForm />
       </div>
-      <OnboardingForm />
     </div>
   );
 }

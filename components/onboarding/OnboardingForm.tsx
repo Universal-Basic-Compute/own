@@ -110,11 +110,11 @@ export function OnboardingForm() {
   const progress = ((currentStep + 1) / STEPS.length) * 100;
   
   return (
-    <div className="bg-white dark:bg-night-mode rounded-lg shadow-lg p-6 md:p-8">
+    <div className="bg-white dark:bg-night-mode rounded-lg shadow-lg p-6 md:p-8 border border-light-medium dark:border-medium-dark">
       <ProgressBar progress={progress} />
       
       <div className="grid md:grid-cols-2 gap-8 mt-8">
-        <div>
+        <div className="bg-light-cloud/50 dark:bg-deep-space/30 p-6 rounded-lg">
           <OnboardingStep
             step={currentStepData}
             onNext={handleNext}
@@ -127,7 +127,7 @@ export function OnboardingForm() {
           />
         </div>
         
-        <div>
+        <div className="bg-light-cloud/50 dark:bg-deep-space/30 p-6 rounded-lg">
           <Visualization 
             type={currentStepData.visualizationType} 
             data={formData}

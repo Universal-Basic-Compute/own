@@ -11,7 +11,7 @@ export default function OnboardingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="max-w-4xl mx-auto pt-12 pb-24 px-4 w-full">
+    <div className="max-w-4xl mx-auto pt-12 pb-24 px-4 w-full bg-gradient-to-br from-light-cloud to-paper-white dark:from-deep-space/50 dark:to-night-mode">
       {children}
     </div>
   );
