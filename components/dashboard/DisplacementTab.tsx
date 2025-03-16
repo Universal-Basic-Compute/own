@@ -97,6 +97,37 @@ export function DisplacementTab() {
   };
 
   const renderSCurve = (category: string, canvasRef: React.RefObject<HTMLCanvasElement>) => {
+  
+  // Add this new function right after the renderSCurve function:
+  const renderTestCurve = () => {
+    if (!canvasRef.current) return;
+  
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+  
+    // Clear canvas and set dimensions
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+    const width = canvas.width;
+    const height = canvas.height;
+  
+    // Draw a simple curve
+    ctx.beginPath();
+    ctx.strokeStyle = '#FF0000';
+    ctx.lineWidth = 5;
+    ctx.moveTo(50, height - 50);
+    ctx.quadraticCurveTo(width/2, 50, width - 50, height - 50);
+    ctx.stroke();
+  
+    // Add a circle
+    ctx.beginPath();
+    ctx.fillStyle = '#0066FF';
+    ctx.arc(width/2, height/2, 20, 0, 2 * Math.PI);
+    ctx.fill();
+  };
     if (!canvasRef.current) return;
     
     const canvas = canvasRef.current;
