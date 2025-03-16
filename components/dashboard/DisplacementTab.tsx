@@ -458,6 +458,50 @@ export function DisplacementTab() {
                 </p>
               </div>
               
+              <div className="mt-6 mb-6">
+                <h4 className="text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Test Curve</h4>
+                <div className="bg-white dark:bg-night-mode rounded-lg p-4 border border-light-medium dark:border-medium-dark" style={{ height: "200px" }}>
+                  <canvas 
+                    id="testCanvas"
+                    width="400"
+                    height="150"
+                    className="w-full h-full bg-white"
+                    style={{ display: "block" }}
+                  ></canvas>
+                </div>
+                <button 
+                  className="mt-2 px-4 py-2 bg-ai-blue text-white rounded-md"
+                  onClick={() => {
+                    const canvas = document.getElementById('testCanvas') as HTMLCanvasElement;
+                    if (canvas) {
+                      const ctx = canvas.getContext('2d');
+                      if (ctx) {
+                        // Clear canvas
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                        
+                        // Draw a simple curve
+                        ctx.beginPath();
+                        ctx.strokeStyle = '#FF0000';
+                        ctx.lineWidth = 5;
+                        ctx.moveTo(50, canvas.height - 50);
+                        ctx.quadraticCurveTo(canvas.width/2, 50, canvas.width - 50, canvas.height - 50);
+                        ctx.stroke();
+                        
+                        // Add a circle
+                        ctx.beginPath();
+                        ctx.fillStyle = '#0066FF';
+                        ctx.arc(canvas.width/2, canvas.height/2, 20, 0, 2 * Math.PI);
+                        ctx.fill();
+                      }
+                    }
+                  }}
+                >
+                  Draw Test Curve
+                </button>
+              </div>
+              
               <div className="mb-6">
                 <div className="flex items-center gap-2 mb-2">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor">
