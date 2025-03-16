@@ -436,8 +436,8 @@ export function DisplacementTab() {
               
               <div className="mb-4">
                 <div className="flex justify-between mb-1">
-                  <span className="text-sm font-medium text-light">High Risk</span>
                   <span className="text-sm font-medium text-light">Low Risk</span>
+                  <span className="text-sm font-medium text-light">High Risk</span>
                 </div>
                 <div className="w-full h-3 bg-medium-dark rounded-full overflow-hidden">
                   <div 
@@ -446,7 +446,7 @@ export function DisplacementTab() {
                       riskInfo.percentage >= 60 ? "bg-gradient-to-r from-warning to-ai-blue" :
                       riskInfo.percentage >= 40 ? "bg-gradient-to-r from-ai-blue to-financial-green" : "bg-gradient-to-r from-financial-green to-ownership-purple"
                     }`}
-                    style={{ width: `${riskInfo.percentage}%`, marginLeft: 'auto' }}
+                    style={{ width: `${riskInfo.percentage}%` }}
                   ></div>
                 </div>
               </div>
