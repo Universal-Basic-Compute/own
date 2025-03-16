@@ -4,20 +4,41 @@ import { useState, useEffect, useRef } from "react";
 import displacementRiskData from "@/data/displacement-risk.json";
 
 export function DisplacementTab() {
-  const [selectedCategory, setSelectedCategory] = useState("Immediate Risk");
   const [selectedGroup, setSelectedGroup] = useState("Screen-Based Data Processing");
   const [selectedProfession, setSelectedProfession] = useState("Data Entry Specialists");
   const [riskData, setRiskData] = useState<any>(null);
   const [professionDetails, setProfessionDetails] = useState<string>("");
+  const [riskCategory, setRiskCategory] = useState("Immediate Risk");
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  // Find the selected category data
+  // Get all job groups across all risk categories
+  const getAllJobGroups = () => {
+    const groups: { name: string; category: string }[] = [];
+    
+    displacementRiskData.professionAutomationRisk.forEach(category => {
+      category.groups.forEach(group => {
+        groups.push({
+          name: group.groupName,
+          category: category.riskCategory
+        });
+      });
+    });
+    
+    return groups;
+  };
+
+  const allJobGroups = getAllJobGroups();
+
+  // Find the selected group data
   useEffect(() => {
+    // First, find which risk category contains this group
     const categoryData = displacementRiskData.professionAutomationRisk.find(
-      category => category.riskCategory === selectedCategory
+      category => category.groups.some(group => group.groupName === selectedGroup)
     );
     
     if (categoryData) {
+      setRiskCategory(categoryData.riskCategory);
+      
       const groupData = categoryData.groups.find(
         group => group.groupName === selectedGroup
       );
@@ -40,49 +61,23 @@ export function DisplacementTab() {
         }
       }
     }
-  }, [selectedCategory, selectedGroup, selectedProfession]);
-
-  // Get all categories from the data
-  const categories = displacementRiskData.professionAutomationRisk.map(
-    category => category.riskCategory
-  );
-
-  // Get groups for the selected category
-  const getGroupsForCategory = (category: string) => {
-    const categoryData = displacementRiskData.professionAutomationRisk.find(
-      c => c.riskCategory === category
-    );
-    return categoryData ? categoryData.groups.map(group => group.groupName) : [];
-  };
+  }, [selectedGroup, selectedProfession]);
 
   // Get professions for the selected group
-  const getProfessionsForGroup = (category: string, group: string) => {
-    const categoryData = displacementRiskData.professionAutomationRisk.find(
-      c => c.riskCategory === category
-    );
-    if (!categoryData) return [];
-    
-    const groupData = categoryData.groups.find(g => g.groupName === group);
-    return groupData ? groupData.professions : [];
-  };
-
-  // Handle category change
-  const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category);
-    const groups = getGroupsForCategory(category);
-    if (groups.length > 0) {
-      setSelectedGroup(groups[0]);
-      const professions = getProfessionsForGroup(category, groups[0]);
-      if (professions.length > 0) {
-        setSelectedProfession(professions[0]);
+  const getProfessionsForGroup = (groupName: string) => {
+    for (const category of displacementRiskData.professionAutomationRisk) {
+      const group = category.groups.find(g => g.groupName === groupName);
+      if (group) {
+        return group.professions;
       }
     }
+    return [];
   };
 
   // Handle group change
-  const handleGroupChange = (group: string) => {
-    setSelectedGroup(group);
-    const professions = getProfessionsForGroup(selectedCategory, group);
+  const handleGroupChange = (groupName: string) => {
+    setSelectedGroup(groupName);
+    const professions = getProfessionsForGroup(groupName);
     if (professions.length > 0) {
       setSelectedProfession(professions[0]);
     }
@@ -288,20 +283,29 @@ export function DisplacementTab() {
       canvas.height = rect.height;
       
       // Render the S-curve
-      renderSCurve(selectedCategory, canvasRef);
+      renderSCurve(riskCategory, canvasRef);
       
       // Add listener for color scheme changes
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      const handleChange = () => renderSCurve(selectedCategory, canvasRef);
+      const handleChange = () => renderSCurve(riskCategory, canvasRef);
       mediaQuery.addEventListener('change', handleChange);
       
       return () => {
         mediaQuery.removeEventListener('change', handleChange);
       };
     }
-  }, [selectedCategory, canvasRef]);
+  }, [riskCategory, canvasRef]);
 
-  const riskInfo = getRiskLevel(selectedCategory);
+  const riskInfo = getRiskLevel(riskCategory);
+
+  // Group job groups by risk category for better organization in the dropdown
+  const groupedJobGroups = allJobGroups.reduce((acc, group) => {
+    if (!acc[group.category]) {
+      acc[group.category] = [];
+    }
+    acc[group.category].push(group.name);
+    return acc;
+  }, {} as Record<string, string[]>);
 
   return (
     <div className="space-y-8">
@@ -314,31 +318,20 @@ export function DisplacementTab() {
           
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-medium-dark mb-2">Risk Category</label>
-              <select 
-                value={selectedCategory}
-                onChange={(e) => handleCategoryChange(e.target.value)}
-                className="w-full p-3 border border-light-medium dark:border-medium-dark rounded-md bg-light-cloud dark:bg-deep-space"
-              >
-                {categories.map((category) => (
-                  <option key={category} value={category}>
-                    {category} ({displacementRiskData.professionAutomationRisk.find(c => c.riskCategory === category)?.timeframe})
-                  </option>
-                ))}
-              </select>
-            </div>
-            
-            <div>
               <label className="block text-sm font-medium text-medium-dark mb-2">Job Group</label>
               <select 
                 value={selectedGroup}
                 onChange={(e) => handleGroupChange(e.target.value)}
                 className="w-full p-3 border border-light-medium dark:border-medium-dark rounded-md bg-light-cloud dark:bg-deep-space"
               >
-                {getGroupsForCategory(selectedCategory).map((group) => (
-                  <option key={group} value={group}>
-                    {group}
-                  </option>
+                {Object.entries(groupedJobGroups).map(([category, groups]) => (
+                  <optgroup key={category} label={`${category} (${getCategoryTimeframe(category)})`}>
+                    {groups.map(group => (
+                      <option key={group} value={group}>
+                        {group}
+                      </option>
+                    ))}
+                  </optgroup>
                 ))}
               </select>
             </div>
@@ -350,7 +343,7 @@ export function DisplacementTab() {
                 onChange={(e) => setSelectedProfession(e.target.value)}
                 className="w-full p-3 border border-light-medium dark:border-medium-dark rounded-md bg-light-cloud dark:bg-deep-space"
               >
-                {getProfessionsForGroup(selectedCategory, selectedGroup).map((profession) => (
+                {getProfessionsForGroup(selectedGroup).map((profession) => (
                   <option key={profession} value={profession}>
                     {profession}
                   </option>
@@ -489,4 +482,12 @@ export function DisplacementTab() {
       )}
     </div>
   );
+}
+
+// Helper function to get timeframe for a category
+function getCategoryTimeframe(category: string): string {
+  const categoryData = displacementRiskData.professionAutomationRisk.find(
+    c => c.riskCategory === category
+  );
+  return categoryData ? categoryData.timeframe : "";
 }
