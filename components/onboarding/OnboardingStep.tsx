@@ -40,16 +40,20 @@ export function OnboardingStep({
   totalSteps,
 }: StepProps) {
   // Initialize value based on input type
-  const [value, setValue] = useState<any>(
-    step.inputType === "checkbox" ? [] : ""
-  );
+  const [value, setValue] = useState<any>(() => {
+    // Initialize as an empty array for checkbox inputs, otherwise empty string
+    return step.inputType === "checkbox" ? [] : "";
+  });
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (step.inputType === "checkbox") {
+      // Ensure value is an array before operating on it
+      const currentValue = Array.isArray(value) ? value : [];
+      
       if (e.target.checked) {
-        setValue([...value, e.target.value]);
+        setValue([...currentValue, e.target.value]);
       } else {
-        setValue(value.filter((v: string) => v !== e.target.value));
+        setValue(currentValue.filter((v: string) => v !== e.target.value));
       }
     } else if (step.inputType === "slider") {
       setValue(Number(e.target.value));
