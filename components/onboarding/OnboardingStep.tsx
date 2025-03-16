@@ -19,6 +19,7 @@ interface StepProps {
     step?: number;
     prefix?: string;
     visualizationType?: string;
+    content?: string; // Add this property for info-card content
   };
   onNext: (data: any) => void;
   onBack: () => void;
@@ -194,7 +195,7 @@ export function OnboardingStep({
                 ? "bg-gradient-to-r from-financial-green to-ownership-purple"
                 : "bg-gradient-to-r from-ai-blue to-financial-green"
             } hover:opacity-90 transition-opacity`}
-            disabled={step.inputType && step.inputType !== "none" && !value}
+            disabled={!!(step.inputType && step.inputType !== "none" && !value)}
           >
             {isLastStep ? "Complete" : "Continue"}
           </button>
