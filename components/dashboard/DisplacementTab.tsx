@@ -3,6 +3,11 @@
 import { useState, useEffect, useRef } from "react";
 import displacementRiskData from "@/data/displacement-risk.json";
 
+// Add this type definition at the top of the file, before the component
+type ProfessionDetails = {
+  [key: string]: string;
+};
+
 export function DisplacementTab() {
   const [selectedGroup, setSelectedGroup] = useState("Screen-Based Data Processing");
   const [selectedProfession, setSelectedProfession] = useState("Data Entry Specialists");
@@ -52,9 +57,10 @@ export function DisplacementTab() {
           explanation: groupData.explanation
         });
         
-        // Set the profession-specific details if available
-        if (groupData.professionDetails && groupData.professionDetails[selectedProfession]) {
-          setProfessionDetails(groupData.professionDetails[selectedProfession]);
+        // Cast professionDetails to our type with index signature
+        const details = groupData.professionDetails as ProfessionDetails;
+        if (details && details[selectedProfession]) {
+          setProfessionDetails(details[selectedProfession]);
         } else {
           setProfessionDetails("");
         }

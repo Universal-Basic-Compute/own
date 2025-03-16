@@ -1,5 +1,18 @@
 "use client";
 
+// Add this type definition at the top of the file, before the component
+type Asset = {
+  name: string;
+  symbol: string;
+  quantity: number;
+  price: number;
+  value: number;
+  monthlyIncome: number;
+  annualYield: number;
+  color: string;
+  percentage?: number; // Add this property
+};
+
 export function AIPortfolioTab() {
   // Sample data - in a real app, this would come from an API or database
   const portfolioData = {
@@ -47,7 +60,7 @@ export function AIPortfolioTab() {
         annualYield: 20.4,
         color: "bg-warning"
       }
-    ]
+    ] as Asset[] // Add type assertion here
   };
   
   // Calculate percentages for the pie chart
