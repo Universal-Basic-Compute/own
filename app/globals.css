@@ -59,4 +59,46 @@
   }
 }
 
-/* We'll add component styles back after fixing the core Tailwind setup */
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-ai-blue to-financial-green text-white font-semibold rounded-lg shadow-md hover:opacity-90 transition-opacity;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 border-2 border-ai-blue text-ai-blue font-semibold rounded-lg hover:bg-ai-blue/5 transition-colors;
+  }
+  
+  .card {
+    @apply bg-white dark:bg-night-mode rounded-lg shadow-md p-6;
+  }
+  
+  /* Gradient Utilities */
+  .bg-ai-horizon {
+    @apply bg-gradient-to-r from-ai-blue to-ownership-purple;
+  }
+  
+  .bg-digital-dawn {
+    @apply bg-gradient-to-r from-ai-blue to-financial-green;
+  }
+  
+  .bg-growth-path {
+    @apply bg-gradient-to-r from-financial-green to-ownership-purple;
+  }
+  
+  /* Animation Utilities */
+  .transition-standard {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .transition-accelerate {
+    @apply transition-all duration-200 ease-out;
+  }
+  
+  .transition-decelerate {
+    @apply transition-all duration-200 ease-in;
+  }
+  
+  .transition-sharp {
+    @apply transition-all duration-150 ease-in-out;
+  }
+}
