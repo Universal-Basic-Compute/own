@@ -18,6 +18,7 @@ interface StepProps {
     max?: number;
     step?: number;
     prefix?: string;
+    visualizationType?: string;
   };
   onNext: (data: any) => void;
   onBack: () => void;
@@ -38,6 +39,7 @@ export function OnboardingStep({
   stepNumber,
   totalSteps,
 }: StepProps) {
+  // Initialize value based on input type
   const [value, setValue] = useState<any>(
     step.inputType === "checkbox" ? [] : ""
   );
@@ -63,6 +65,11 @@ export function OnboardingStep({
     } else {
       onNext(value);
     }
+  };
+  
+  // Helper function to check if a value is in an array safely
+  const isValueInArray = (arr: any[], val: string): boolean => {
+    return Array.isArray(arr) && arr.includes(val);
   };
   
   return (
@@ -111,7 +118,7 @@ export function OnboardingStep({
               <label
                 key={option.value}
                 className={`flex items-start p-4 border ${
-                  value.includes(option.value) 
+                  isValueInArray(value, option.value)
                     ? "border-ai-blue bg-ai-blue/5" 
                     : "border-light-medium"
                 } rounded-md cursor-pointer hover:border-ai-blue transition-colors`}
@@ -120,7 +127,7 @@ export function OnboardingStep({
                   type="checkbox"
                   name={step.id}
                   value={option.value}
-                  checked={value.includes(option.value)}
+                  checked={isValueInArray(value, option.value)}
                   onChange={handleChange}
                   className="mt-1 text-ai-blue focus:ring-financial-green"
                 />
