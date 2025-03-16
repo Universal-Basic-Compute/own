@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-gradient-to-br from-light-cloud to-paper-white dark:from-deep-space dark:to-night-mode`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-gradient-to-br from-light-cloud to-paper-white dark:from-ownership-purple/30 dark:to-deep-space`}
       >
         <Header />
         <main className="flex-grow">
