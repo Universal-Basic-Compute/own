@@ -59,22 +59,22 @@ export function AIPortfolioTab() {
     <div className="space-y-8">
       <div className="grid md:grid-cols-4 gap-6">
         <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-6">
-          <h3 className="text-sm font-medium text-medium-dark mb-2">Total Portfolio Value</h3>
+          <h3 className="text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Total Portfolio Value</h3>
           <div className="text-h3 font-bold">${portfolioData.totalValue.toLocaleString()}</div>
         </div>
         
         <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-6">
-          <h3 className="text-sm font-medium text-medium-dark mb-2">Monthly Passive Income</h3>
+          <h3 className="text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Monthly Passive Income</h3>
           <div className="text-h3 font-bold text-financial-green">${portfolioData.monthlyIncome.toLocaleString()}</div>
         </div>
         
         <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-6">
-          <h3 className="text-sm font-medium text-medium-dark mb-2">Annual Yield</h3>
+          <h3 className="text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Annual Yield</h3>
           <div className="text-h3 font-bold text-ai-blue">{portfolioData.annualYield}%</div>
         </div>
         
         <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-6">
-          <h3 className="text-sm font-medium text-medium-dark mb-2">Asset Classes</h3>
+          <h3 className="text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Asset Classes</h3>
           <div className="text-h3 font-bold">{portfolioData.assets.length}</div>
         </div>
       </div>
@@ -103,7 +103,7 @@ export function AIPortfolioTab() {
                           <div className={`w-3 h-3 rounded-full ${asset.color} mr-2`}></div>
                           <div>
                             <div className="font-medium">{asset.name}</div>
-                            <div className="text-xs text-medium-dark">{asset.symbol}</div>
+                            <div className="text-xs text-medium-dark dark:text-light-medium">{asset.symbol}</div>
                           </div>
                         </div>
                       </td>
@@ -145,7 +145,7 @@ export function AIPortfolioTab() {
                 })}
                 <div className="absolute inset-4 bg-white dark:bg-night-mode rounded-full flex items-center justify-center">
                   <div className="text-center">
-                    <div className="text-xs text-medium-dark">Total Value</div>
+                    <div className="text-xs text-medium-dark dark:text-light-medium">Total Value</div>
                     <div className="font-bold">${portfolioData.totalValue.toLocaleString()}</div>
                   </div>
                 </div>

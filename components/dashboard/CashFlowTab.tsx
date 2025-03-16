@@ -38,7 +38,7 @@ export function CashFlowTab() {
             </span>
             <span className="text-medium-dark dark:text-medium mb-1">/ month</span>
           </div>
-          <div className="mt-2 text-sm text-medium-dark">
+          <div className="mt-2 text-sm text-medium-dark dark:text-light-medium">
             Savings Rate: <span className="font-semibold">{savingsRate}%</span>
           </div>
         </div>
@@ -51,7 +51,7 @@ export function CashFlowTab() {
             </span>
             <span className="text-medium-dark dark:text-medium mb-1">/ month</span>
           </div>
-          <div className="mt-2 text-sm text-medium-dark">
+          <div className="mt-2 text-sm text-medium-dark dark:text-light-medium">
             Amount needed to close the gap between expenses and passive income
           </div>
         </div>
@@ -66,7 +66,7 @@ export function CashFlowTab() {
               ></div>
             </div>
           </div>
-          <div className="flex justify-between text-sm text-medium-dark">
+          <div className="flex justify-between text-sm text-medium-dark dark:text-light-medium">
             <span>{freedomPercentage}% covered by passive income</span>
             <span>${passiveIncome.toLocaleString()} / ${totalExpenses.toLocaleString()}</span>
           </div>
@@ -94,7 +94,7 @@ export function CashFlowTab() {
                       <span className="capitalize">{category}</span>
                       <div>
                         <span className="font-semibold">${amount.toLocaleString()}</span>
-                        <span className="text-medium-dark ml-2">({percentage}%)</span>
+                        <span className="text-medium-dark dark:text-light-medium ml-2">({percentage}%)</span>
                       </div>
                     </div>
                     <div className="w-full h-2 bg-light-medium dark:bg-medium-dark rounded-full overflow-hidden">
@@ -136,7 +136,7 @@ export function CashFlowTab() {
                       <span className="capitalize">{category}</span>
                       <div>
                         <span className="font-semibold">${amount.toLocaleString()}</span>
-                        <span className="text-medium-dark ml-2">({percentage}%)</span>
+                        <span className="text-medium-dark dark:text-light-medium ml-2">({percentage}%)</span>
                       </div>
                     </div>
                     <div className="w-full h-2 bg-light-medium dark:bg-medium-dark rounded-full overflow-hidden">

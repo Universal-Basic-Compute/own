@@ -178,13 +178,13 @@ export function FutureGrowthTab() {
       <div className="flex flex-col md:flex-row gap-6 mb-8">
         <div className="md:w-1/2">
           <h3 className="text-h4 font-semibold mb-4">Growth Projections</h3>
-          <p className="text-medium-dark dark:text-medium mb-6">
+          <p className="text-medium-dark dark:text-light-medium mb-6">
             Explore how your AI asset portfolio could grow over time based on different scenarios.
           </p>
           
           <div className="grid grid-cols-2 gap-4 mb-6">
             <div>
-              <label className="block text-sm font-medium text-medium-dark mb-2">Timeframe</label>
+              <label className="block text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Timeframe</label>
               <select 
                 value={timeframe}
                 onChange={(e) => setTimeframe(e.target.value)}
@@ -199,7 +199,7 @@ export function FutureGrowthTab() {
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-medium-dark mb-2">Growth Scenario</label>
+              <label className="block text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Growth Scenario</label>
               <select 
                 value={growthScenario}
                 onChange={(e) => setGrowthScenario(e.target.value)}
@@ -215,35 +215,35 @@ export function FutureGrowthTab() {
           </div>
           
           <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-4 mb-4">
-            <div className="text-sm text-medium-dark mb-1">Scenario Description</div>
+            <div className="text-sm text-medium-dark dark:text-light-medium mb-1">Scenario Description</div>
             <div className="font-medium">{currentScenario.description}</div>
           </div>
           
           <div className="bg-light-cloud dark:bg-deep-space/50 rounded-lg p-4">
-            <div className="text-sm text-medium-dark mb-1">Monthly Contribution</div>
+            <div className="text-sm text-medium-dark dark:text-light-medium mb-1">Monthly Contribution</div>
             <div className="font-medium">${projectionData.monthlyContribution}/month</div>
           </div>
         </div>
         
         <div className="md:w-1/2 grid grid-cols-2 gap-4">
           <div className="bg-gradient-to-br from-ai-blue/10 to-financial-green/10 rounded-lg p-6 flex flex-col justify-between">
-            <div className="text-sm text-medium-dark">Current Portfolio Value</div>
+            <div className="text-sm text-medium-dark dark:text-light-medium">Current Portfolio Value</div>
             <div className="text-h4 font-bold">${projectionData.currentPortfolioValue.toLocaleString()}</div>
           </div>
           
           <div className="bg-gradient-to-br from-ai-blue/10 to-financial-green/10 rounded-lg p-6 flex flex-col justify-between">
-            <div className="text-sm text-medium-dark">Projected Value</div>
+            <div className="text-sm text-medium-dark dark:text-light-medium">Projected Value</div>
             <div className="text-h4 font-bold text-financial-green">${currentProjection.portfolioValue.toLocaleString()}</div>
             <div className="text-sm text-financial-green">+{portfolioGrowthPercentage}%</div>
           </div>
           
           <div className="bg-gradient-to-br from-ai-blue/10 to-financial-green/10 rounded-lg p-6 flex flex-col justify-between">
-            <div className="text-sm text-medium-dark">Current Monthly Income</div>
+            <div className="text-sm text-medium-dark dark:text-light-medium">Current Monthly Income</div>
             <div className="text-h4 font-bold">${projectionData.currentMonthlyIncome.toLocaleString()}</div>
           </div>
           
           <div className="bg-gradient-to-br from-ai-blue/10 to-financial-green/10 rounded-lg p-6 flex flex-col justify-between">
-            <div className="text-sm text-medium-dark">Projected Monthly Income</div>
+            <div className="text-sm text-medium-dark dark:text-light-medium">Projected Monthly Income</div>
             <div className="text-h4 font-bold text-financial-green">${currentProjection.monthlyIncome.toLocaleString()}</div>
             <div className="text-sm text-financial-green">+{incomeGrowthPercentage}%</div>
           </div>

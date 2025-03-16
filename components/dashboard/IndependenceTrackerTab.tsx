@@ -100,24 +100,24 @@ export function IndependenceTrackerTab() {
       <div className="bg-gradient-to-r from-ai-blue/10 to-financial-green/10 rounded-lg p-6 border border-ai-blue/20">
         <div className="grid md:grid-cols-3 gap-6 mb-6">
           <div className="bg-white dark:bg-night-mode rounded-lg p-4 text-center">
-            <h3 className="text-sm font-medium text-medium-dark mb-2">Current Passive Income</h3>
+            <h3 className="text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Current Passive Income</h3>
             <div className="text-h3 font-bold text-ai-blue">${independenceData.currentPassiveIncome}/mo</div>
           </div>
           
           <div className="bg-white dark:bg-night-mode rounded-lg p-4 text-center">
-            <h3 className="text-sm font-medium text-medium-dark mb-2">Target for Freedom</h3>
+            <h3 className="text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Target for Freedom</h3>
             <div className="text-h3 font-bold text-financial-green">${independenceData.targetPassiveIncome}/mo</div>
           </div>
           
           <div className="bg-white dark:bg-night-mode rounded-lg p-4 text-center">
-            <h3 className="text-sm font-medium text-medium-dark mb-2">Months Remaining</h3>
+            <h3 className="text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Months Remaining</h3>
             <div className="text-h3 font-bold text-ownership-purple">{independenceData.monthsRemaining}</div>
           </div>
         </div>
         
         <div className="mb-2">
           <div className="flex justify-between mb-1">
-            <span className="text-sm font-medium">Progress to Financial Independence</span>
+            <span className="text-sm font-medium text-medium-dark dark:text-light-medium">Progress to Financial Independence</span>
             <span className="text-sm font-medium">{independenceData.progressPercentage}%</span>
           </div>
           <div className="w-full h-4 bg-light-medium dark:bg-medium-dark rounded-full overflow-hidden">
@@ -129,7 +129,7 @@ export function IndependenceTrackerTab() {
         </div>
         
         <div className="text-center mt-4">
-          <div className="text-sm text-medium-dark mb-1">Projected Freedom Date</div>
+          <div className="text-sm text-medium-dark dark:text-light-medium mb-1">Projected Freedom Date</div>
           <div className="text-h4 font-bold">{independenceData.projectedFreedomDate}</div>
         </div>
       </div>
@@ -166,7 +166,7 @@ export function IndependenceTrackerTab() {
                         <h4 className="font-semibold">{milestone.name}</h4>
                         <span className="ml-2 text-sm text-medium-dark">{milestone.date}</span>
                       </div>
-                      <p className="text-sm text-medium-dark mt-1">{milestone.description}</p>
+                      <p className="text-sm text-medium-dark dark:text-light-medium mt-1">{milestone.description}</p>
                       
                       {!milestone.completed && milestone.daysRemaining && (
                         <div className="mt-2 text-xs text-ai-blue">
@@ -195,8 +195,8 @@ export function IndependenceTrackerTab() {
                     </div>
                     <div>
                       <h4 className="font-semibold">{achievement.title}</h4>
-                      <p className="text-sm text-medium-dark">{achievement.description}</p>
-                      <div className="text-xs text-medium-dark mt-1">{achievement.date}</div>
+                      <p className="text-sm text-medium-dark dark:text-light-medium">{achievement.description}</p>
+                      <div className="text-xs text-medium-dark dark:text-light-medium mt-1">{achievement.date}</div>
                     </div>
                   </div>
                 ))}
@@ -217,8 +217,8 @@ export function IndependenceTrackerTab() {
                     </div>
                     <div>
                       <h4 className="font-semibold">{action.title}</h4>
-                      <p className="text-sm text-medium-dark">{action.description}</p>
-                      <div className="text-xs text-medium-dark mt-1">Estimated time: {action.timeEstimate}</div>
+                      <p className="text-sm text-medium-dark dark:text-light-medium">{action.description}</p>
+                      <div className="text-xs text-medium-dark dark:text-light-medium mt-1">Estimated time: {action.timeEstimate}</div>
                     </div>
                   </div>
                 ))}

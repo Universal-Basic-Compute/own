@@ -46,10 +46,10 @@
   }
   
   /* Dark is now the default, no need for this class */
-  /* .dark {
-    --background: var(--deep-space);
-    --foreground: var(--light);
-  } */
+  .dark {
+    --medium-dark: 224 224 224; /* Lighter in dark mode for better contrast */
+    --light-medium: 245 245 245; /* Lighter in dark mode for better contrast */
+  }
   
   body {
     font-family: 'Inter', sans-serif;
@@ -72,6 +72,15 @@
   
   .card {
     @apply bg-white dark:bg-night-mode rounded-lg shadow-md p-6;
+  }
+  
+  /* Utility classes for dark mode text */
+  .dark-text-contrast {
+    @apply text-medium-dark dark:text-light-medium;
+  }
+  
+  .dark-heading-contrast {
+    @apply text-dark dark:text-light;
   }
   
   /* Gradient Utilities */

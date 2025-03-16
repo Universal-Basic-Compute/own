@@ -333,13 +333,13 @@ export function DisplacementTab() {
       <div className="flex flex-col md:flex-row gap-6 mb-8">
         <div className="md:w-1/2">
           <h2 className="text-h3 font-semibold mb-4">When will I be replaced by AI?</h2>
-          <p className="text-medium-dark dark:text-medium mb-6">
+          <p className="text-medium-dark dark:text-light-medium mb-6">
             Understand how AI might impact your current career and when you should prepare for transition.
           </p>
           
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-medium-dark mb-2">Job Group</label>
+              <label className="block text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Job Group</label>
               <select 
                 value={selectedGroup}
                 onChange={(e) => handleGroupChange(e.target.value)}
@@ -358,7 +358,7 @@ export function DisplacementTab() {
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-medium-dark mb-2">Profession</label>
+              <label className="block text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Profession</label>
               <select 
                 value={selectedProfession}
                 onChange={(e) => setSelectedProfession(e.target.value)}
@@ -375,7 +375,7 @@ export function DisplacementTab() {
             {professionDetails && (
               <div className="mt-4 bg-white dark:bg-night-mode rounded-lg shadow-md p-6 border-l-4 border-ai-blue">
                 <h3 className="text-h4 font-semibold mb-4">Your Profession: {selectedProfession}</h3>
-                <p className="text-medium-dark dark:text-medium">
+                <p className="text-medium-dark dark:text-light-medium">
                   {professionDetails}
                 </p>
               </div>
@@ -395,8 +395,8 @@ export function DisplacementTab() {
               
               <div className="mb-4">
                 <div className="flex justify-between mb-1">
-                  <span className="text-sm text-medium-dark">Low Risk</span>
-                  <span className="text-sm text-medium-dark">High Risk</span>
+                  <span className="text-sm text-medium-dark dark:text-light-medium">Low Risk</span>
+                  <span className="text-sm text-medium-dark dark:text-light-medium">High Risk</span>
                 </div>
                 <div className="w-full h-3 bg-light-medium dark:bg-medium-dark rounded-full overflow-hidden">
                   <div 
@@ -412,7 +412,7 @@ export function DisplacementTab() {
               
               {/* S-Curve Automation Graph */}
               <div className="mt-6 mb-6">
-                <h4 className="text-sm font-medium text-medium-dark mb-2">Job Automation Curve</h4>
+                <h4 className="text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Job Automation Curve</h4>
                 <div className="bg-white dark:bg-night-mode rounded-lg p-4 border border-light-medium dark:border-medium-dark" style={{ minHeight: "200px" }}>
                   <canvas 
                     ref={canvasRef} 
@@ -421,7 +421,7 @@ export function DisplacementTab() {
                     aria-label="S-curve showing job automation over time"
                   ></canvas>
                 </div>
-                <p className="text-xs text-medium-dark mt-2">
+                <p className="text-xs text-medium-dark dark:text-light-medium mt-2">
                   This S-curve shows the projected percentage of jobs in your field that will be automated over time.
                   The steepness and timing of the curve are based on your risk category.
                 </p>
