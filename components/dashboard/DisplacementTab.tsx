@@ -275,10 +275,12 @@ export function DisplacementTab() {
   };
 
   useEffect(() => {
-    if (canvasRef.current) {
+    if (canvasRef.current && riskCategory) {
       // Set the canvas dimensions to match its display size
       const canvas = canvasRef.current;
       const rect = canvas.getBoundingClientRect();
+      
+      // Set the actual canvas dimensions (important for proper rendering)
       canvas.width = rect.width;
       canvas.height = rect.height;
       
@@ -383,10 +385,11 @@ export function DisplacementTab() {
               {/* S-Curve Automation Graph */}
               <div className="mt-6 mb-6">
                 <h4 className="text-sm font-medium text-medium-dark mb-2">Job Automation Curve</h4>
-                <div className="bg-white dark:bg-night-mode rounded-lg p-4 border border-light-medium dark:border-medium-dark">
+                <div className="bg-white dark:bg-night-mode rounded-lg p-4 border border-light-medium dark:border-medium-dark" style={{ minHeight: "200px" }}>
                   <canvas 
                     ref={canvasRef} 
                     className="w-full h-48"
+                    style={{ display: "block" }}
                     aria-label="S-curve showing job automation over time"
                   ></canvas>
                 </div>
