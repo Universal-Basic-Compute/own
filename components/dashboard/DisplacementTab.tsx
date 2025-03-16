@@ -336,7 +336,7 @@ export function DisplacementTab() {
               <select 
                 value={selectedGroup}
                 onChange={(e) => handleGroupChange(e.target.value)}
-                className="w-full p-3 border border-light-medium dark:border-medium-dark rounded-md bg-light-cloud dark:bg-deep-space"
+                className="w-full p-3 border border-medium-dark rounded-md bg-night-mode text-light"
               >
                 {Object.entries(groupedJobGroups).map(([category, groups]) => (
                   <optgroup key={category} label={`${category} (${getCategoryTimeframe(category)})`}>
@@ -355,7 +355,7 @@ export function DisplacementTab() {
               <select 
                 value={selectedProfession}
                 onChange={(e) => setSelectedProfession(e.target.value)}
-                className="w-full p-3 border border-light-medium dark:border-medium-dark rounded-md bg-light-cloud dark:bg-deep-space"
+                className="w-full p-3 border border-medium-dark rounded-md bg-night-mode text-light"
               >
                 {getProfessionsForGroup(selectedGroup).map((profession) => (
                   <option key={profession} value={profession}>
@@ -366,9 +366,9 @@ export function DisplacementTab() {
             </div>
             
             {professionDetails && (
-              <div className="mt-4 bg-white dark:bg-night-mode rounded-lg shadow-md p-6 border-l-4 border-ai-blue">
-                <h3 className="text-h4 font-semibold mb-4">Your Profession: {selectedProfession}</h3>
-                <p className="text-medium-dark dark:text-light-medium">
+              <div className="mt-4 bg-gradient-to-br from-night-mode to-deep-space/90 rounded-lg shadow-md p-6 border-l-4 border-ai-blue">
+                <h3 className="text-h4 font-semibold mb-4 text-light">Your Profession: {selectedProfession}</h3>
+                <p className="text-light">
                   {professionDetails}
                 </p>
               </div>
@@ -380,7 +380,7 @@ export function DisplacementTab() {
           {riskData && (
             <div>
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-h4 font-semibold">Displacement Risk Level</h3>
+                <h3 className="text-h4 font-semibold text-light">Displacement Risk Level</h3>
                 <span className={`text-h2 font-bold ${
                   riskInfo.level === "High" ? "text-error" : 
                   riskInfo.level === "Medium-High" ? "text-warning" : 
@@ -395,33 +395,33 @@ export function DisplacementTab() {
               
               <div className="mb-4">
                 <div className="flex justify-between mb-1">
-                  <span className="text-sm text-medium-dark dark:text-light-medium">Low Risk</span>
-                  <span className="text-sm text-medium-dark dark:text-light-medium">High Risk</span>
+                  <span className="text-sm font-medium text-light">High Risk</span>
+                  <span className="text-sm font-medium text-light">Low Risk</span>
                 </div>
-                <div className="w-full h-3 bg-light-medium dark:bg-medium-dark rounded-full overflow-hidden">
+                <div className="w-full h-3 bg-medium-dark rounded-full overflow-hidden">
                   <div 
                     className={`h-full ${
                       riskInfo.percentage >= 80 ? "bg-gradient-to-r from-error to-warning" :
                       riskInfo.percentage >= 60 ? "bg-gradient-to-r from-warning to-ai-blue" :
                       riskInfo.percentage >= 40 ? "bg-gradient-to-r from-ai-blue to-financial-green" : "bg-gradient-to-r from-financial-green to-ownership-purple"
                     }`}
-                    style={{ width: `${riskInfo.percentage}%` }}
+                    style={{ width: `${riskInfo.percentage}%`, marginLeft: 'auto' }}
                   ></div>
                 </div>
               </div>
               
               {/* S-Curve Automation Graph */}
               <div className="mt-6 mb-6">
-                <h4 className="text-sm font-medium text-medium-dark dark:text-light-medium mb-2">Job Automation Curve</h4>
-                <div className="bg-white dark:bg-night-mode rounded-lg p-4 border border-light-medium dark:border-medium-dark" style={{ minHeight: "200px" }}>
+                <h4 className="text-sm font-medium text-light mb-2">Job Automation Curve</h4>
+                <div className="bg-night-mode rounded-lg p-4 border border-medium-dark" style={{ minHeight: "200px" }}>
                   <canvas 
                     ref={canvasRef} 
-                    className="w-full h-48 bg-white dark:bg-night-mode"
+                    className="w-full h-48 bg-night-mode"
                     style={{ display: "block" }}
                     aria-label="S-curve showing job automation over time"
                   ></canvas>
                 </div>
-                <p className="text-xs text-medium-dark dark:text-light-medium mt-2">
+                <p className="text-xs text-light mt-2">
                   This S-curve shows the projected percentage of jobs in your field that will be automated over time.
                   The steepness and timing of the curve are based on your risk category.
                 </p>
@@ -432,8 +432,8 @@ export function DisplacementTab() {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <span className="font-medium">Estimated Timeframe:</span>
-                  <span>{riskData.timeframe}</span>
+                  <span className="font-medium text-light">Estimated Timeframe:</span>
+                  <span className="text-warning">{riskData.timeframe}</span>
                 </div>
               </div>
             </div>
@@ -445,27 +445,27 @@ export function DisplacementTab() {
       {riskData && (
         <div className="grid md:grid-cols-2 gap-6">
           <div className="bg-gradient-to-br from-ai-blue/10 to-deep-space/90 rounded-lg p-6 border border-ai-blue/20 shadow-md">
-            <h3 className="text-h4 font-semibold mb-4">Automation Signals</h3>
+            <h3 className="text-h4 font-semibold mb-4 text-light">Automation Signals</h3>
             <ul className="space-y-2">
               {riskData.automationSignals.map((signal: string, index: number) => (
                 <li key={index} className="flex items-start">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-warning mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <span>{signal}</span>
+                  <span className="text-light">{signal}</span>
                 </li>
               ))}
             </ul>
           </div>
           
           <div className="bg-gradient-to-br from-ownership-purple/10 to-deep-space/90 rounded-lg p-6 border border-ownership-purple/20 shadow-md">
-            <h3 className="text-h4 font-semibold mb-4">Automation Timeline</h3>
+            <h3 className="text-h4 font-semibold mb-4 text-light">Automation Timeline</h3>
             <div className="space-y-6">
               {riskData.automationStages.map((stage: any, index: number) => (
                 <div key={index} className="relative">
                   {/* Vertical line connecting stages */}
                   {index < riskData.automationStages.length - 1 && (
-                    <div className="absolute top-10 left-4 w-0.5 h-full -ml-px bg-light-medium dark:bg-medium-dark"></div>
+                    <div className="absolute top-10 left-4 w-0.5 h-full -ml-px bg-medium-dark"></div>
                   )}
                   
                   <div className="flex">
@@ -474,8 +474,8 @@ export function DisplacementTab() {
                     </div>
                     
                     <div className="ml-4 pb-8">
-                      <div className="font-semibold">{stage.stage}</div>
-                      <p className="text-sm text-medium-dark mt-1">{stage.description}</p>
+                      <div className="font-semibold text-light">{stage.stage}</div>
+                      <p className="text-sm text-light-medium mt-1">{stage.description}</p>
                       <div className="mt-2 text-xs text-ai-blue">
                         {stage.timeframe}
                       </div>
@@ -490,8 +490,8 @@ export function DisplacementTab() {
       
       {riskData && (
         <div className="bg-gradient-to-r from-ai-blue/10 to-financial-green/10 rounded-lg p-6 border border-ai-blue/20">
-          <h3 className="text-h4 font-semibold mb-4">Automation Impact Analysis</h3>
-          <p className="text-medium-dark dark:text-medium mb-6">
+          <h3 className="text-h4 font-semibold mb-4 text-light">Automation Impact Analysis</h3>
+          <p className="text-light mb-6">
             {riskData.explanation}
           </p>
           
