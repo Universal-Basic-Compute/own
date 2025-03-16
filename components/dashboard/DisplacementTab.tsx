@@ -407,18 +407,17 @@ export function DisplacementTab() {
               </div>
             </div>
           )}
+          
+          {professionDetails && (
+            <div className="mt-6 bg-white dark:bg-night-mode rounded-lg shadow-md p-6 border-l-4 border-ai-blue">
+              <h3 className="text-h4 font-semibold mb-4">Your Profession: {selectedProfession}</h3>
+              <p className="text-medium-dark dark:text-medium">
+                {professionDetails}
+              </p>
+            </div>
+          )}
         </div>
       </div>
-      
-      {/* Personalized Profession Analysis */}
-      {professionDetails && (
-        <div className="bg-white dark:bg-night-mode rounded-lg shadow-md p-6 border-l-4 border-ai-blue">
-          <h3 className="text-h4 font-semibold mb-4">Your Profession: {selectedProfession}</h3>
-          <p className="text-medium-dark dark:text-medium">
-            {professionDetails}
-          </p>
-        </div>
-      )}
       
       {riskData && (
         <div className="grid md:grid-cols-2 gap-6">
