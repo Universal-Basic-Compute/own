@@ -442,9 +442,9 @@ export function DisplacementTab() {
                 <div className="w-full h-3 bg-medium-dark rounded-full overflow-hidden">
                   <div 
                     className={`h-full ${
-                      riskInfo.percentage >= 80 ? "bg-gradient-to-r from-error to-warning" :
-                      riskInfo.percentage >= 60 ? "bg-gradient-to-r from-warning to-ai-blue" :
-                      riskInfo.percentage >= 40 ? "bg-gradient-to-r from-ai-blue to-financial-green" : "bg-gradient-to-r from-financial-green to-ownership-purple"
+                      riskInfo.percentage >= 80 ? "bg-gradient-to-r from-financial-green to-error" :
+                      riskInfo.percentage >= 60 ? "bg-gradient-to-r from-financial-green to-warning" :
+                      riskInfo.percentage >= 40 ? "bg-gradient-to-r from-financial-green to-ai-blue" : "bg-gradient-to-r from-ownership-purple to-financial-green"
                     }`}
                     style={{ width: `${riskInfo.percentage}%` }}
                   ></div>
