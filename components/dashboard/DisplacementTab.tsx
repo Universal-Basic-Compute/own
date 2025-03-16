@@ -313,7 +313,7 @@ export function DisplacementTab() {
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row gap-6 mb-8">
         <div className="md:w-1/2">
-          <h2 className="text-h3 font-semibold mb-4">Assess Your Displacement Risk</h2>
+          <h2 className="text-h3 font-semibold mb-4">When will I be replaced by AI?</h2>
           <p className="text-medium-dark dark:text-medium mb-6">
             Understand how AI might impact your current career and when you should prepare for transition.
           </p>
