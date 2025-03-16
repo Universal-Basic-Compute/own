@@ -8,6 +8,7 @@ export function DisplacementTab() {
   const [selectedGroup, setSelectedGroup] = useState("Screen-Based Data Processing");
   const [selectedProfession, setSelectedProfession] = useState("Data Entry Specialists");
   const [riskData, setRiskData] = useState<any>(null);
+  const [professionDetails, setProfessionDetails] = useState<string>("");
 
   // Find the selected category data
   useEffect(() => {
@@ -29,9 +30,16 @@ export function DisplacementTab() {
           automationStages: groupData.automationStages,
           explanation: groupData.explanation
         });
+        
+        // Set the profession-specific details if available
+        if (groupData.professionDetails && groupData.professionDetails[selectedProfession]) {
+          setProfessionDetails(groupData.professionDetails[selectedProfession]);
+        } else {
+          setProfessionDetails("");
+        }
       }
     }
-  }, [selectedCategory, selectedGroup]);
+  }, [selectedCategory, selectedGroup, selectedProfession]);
 
   // Get all categories from the data
   const categories = displacementRiskData.professionAutomationRisk.map(
@@ -191,6 +199,16 @@ export function DisplacementTab() {
           )}
         </div>
       </div>
+      
+      {/* Personalized Profession Analysis */}
+      {professionDetails && (
+        <div className="bg-white dark:bg-night-mode rounded-lg shadow-md p-6 border-l-4 border-ai-blue">
+          <h3 className="text-h4 font-semibold mb-4">Your Profession: {selectedProfession}</h3>
+          <p className="text-medium-dark dark:text-medium">
+            {professionDetails}
+          </p>
+        </div>
+      )}
       
       {riskData && (
         <div className="grid md:grid-cols-2 gap-6">
