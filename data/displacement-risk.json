@@ -1,0 +1,670 @@
+{
+  "professionAutomationRisk": [
+    {
+      "riskCategory": "Immediate Risk",
+      "timeframe": "0-2 Years",
+      "groups": [
+        {
+          "groupName": "Screen-Based Data Processing",
+          "professions": [
+            "Data Entry Specialists",
+            "Basic Content Moderators",
+            "Form Processors",
+            "Simple Report Generators",
+            "Transaction Processors"
+          ],
+          "automationSignals": [
+            "Increased use of OCR and automated data extraction",
+            "Companies investing in RPA (Robotic Process Automation)",
+            "Reduced hiring in entry-level processing positions",
+            "Increased accuracy of AI text processing",
+            "Migration to cloud-based data management systems"
+          ],
+          "automationStages": [
+            {
+              "stage": "Initial Augmentation",
+              "description": "AI tools check human work for errors and suggest improvements",
+              "timeframe": "Already occurring"
+            },
+            {
+              "stage": "Partial Automation",
+              "description": "Routine aspects handled by AI with human oversight for exceptions",
+              "timeframe": "0-1 year"
+            },
+            {
+              "stage": "Full Automation",
+              "description": "End-to-end processing with minimal human intervention",
+              "timeframe": "1-2 years"
+            }
+          ],
+          "explanation": "Screen-based data processing roles face immediate automation risk due to the structured nature of the work and rapid advancements in OCR, NLP, and machine learning. These technologies can already process forms, extract data from documents, and handle routine data management tasks with high accuracy. Businesses are actively implementing these solutions to reduce costs and errors."
+        },
+        {
+          "groupName": "Routine Customer Service",
+          "professions": [
+            "Basic Call Center Representatives",
+            "Online Chat Support (Tier 1)",
+            "Simple Customer Service Roles",
+            "Order Taking Services",
+            "Appointment Schedulers"
+          ],
+          "automationSignals": [
+            "Widespread adoption of chatbots on company websites",
+            "Increased sophistication of virtual assistants",
+            "Customer service phone systems handling more complex queries",
+            "Companies marketing AI-powered customer service as a feature",
+            "Decrease in entry-level customer service job postings"
+          ],
+          "automationStages": [
+            {
+              "stage": "Chatbot Integration",
+              "description": "AI handling basic queries with human escalation for complex issues",
+              "timeframe": "Already occurring"
+            },
+            {
+              "stage": "Voice AI Implementation",
+              "description": "Voice-based AI systems handling routine calls and transactions",
+              "timeframe": "0-1 year"
+            },
+            {
+              "stage": "Multi-channel AI Support",
+              "description": "Seamless AI service across all customer touchpoints with minimal human backup",
+              "timeframe": "1-2 years"
+            }
+          ],
+          "explanation": "Routine customer service positions are rapidly being automated with conversational AI that can handle standard inquiries, process orders, and manage appointments. Modern AI systems can understand context, respond naturally, and escalate to humans when necessary. Companies are increasingly implementing these systems for cost reduction and 24/7 availability."
+        },
+        {
+          "groupName": "Basic Content Creation",
+          "professions": [
+            "Social Media Post Writers",
+            "Basic Copywriters",
+            "Template-Based Designers",
+            "Stock Photo Editors",
+            "Simple Email Marketing"
+          ],
+          "automationSignals": [
+            "Widespread use of AI content generation tools by businesses",
+            "Marketing agencies offering AI-generated content packages",
+            "Media companies using AI for routine content production",
+            "Increase in AI-powered design and editing tools",
+            "Declining rates for freelance basic content creation"
+          ],
+          "automationStages": [
+            {
+              "stage": "Content Assistance",
+              "description": "AI generating drafts and suggestions for human refinement",
+              "timeframe": "Already occurring"
+            },
+            {
+              "stage": "Automated Production",
+              "description": "AI creating complete content pieces with minimal human direction",
+              "timeframe": "0-1 year"
+            },
+            {
+              "stage": "Strategic Integration",
+              "description": "AI managing content creation, scheduling, and optimization across platforms",
+              "timeframe": "1-2 years"
+            }
+          ],
+          "explanation": "Basic content creation is being rapidly transformed by advanced AI language and design models. These technologies can now generate social media posts, marketing copy, simple designs, and routine communications that are increasingly difficult to distinguish from human-created content. The efficiency and cost advantages of these tools make them particularly disruptive in this field."
+        }
+      ]
+    },
+    {
+      "riskCategory": "Near-Term Risk",
+      "timeframe": "2-5 Years",
+      "groups": [
+        {
+          "groupName": "Sales & Marketing",
+          "professions": [
+            "Telemarketers",
+            "Online Sales Representatives",
+            "Basic Market Researchers",
+            "Lead Generation Specialists",
+            "Standard Digital Marketers"
+          ],
+          "automationSignals": [
+            "Adoption of AI sales assistants by leading companies",
+            "Automated lead scoring and qualification systems",
+            "Sales platforms integrating AI-powered outreach",
+            "Increasing personalization in automated marketing",
+            "Growth of companies offering AI sales enhancement tools"
+          ],
+          "automationStages": [
+            {
+              "stage": "Prospect Identification",
+              "description": "AI systems identifying and qualifying leads",
+              "timeframe": "Already occurring"
+            },
+            {
+              "stage": "Automated Engagement",
+              "description": "AI handling routine sales communications and follow-ups",
+              "timeframe": "1-3 years"
+            },
+            {
+              "stage": "Autonomous Selling",
+              "description": "End-to-end sales processes managed by AI for standard products",
+              "timeframe": "3-5 years"
+            }
+          ],
+          "explanation": "Sales and marketing roles face significant automation as AI becomes more capable of understanding customer needs, personalizing communications, and managing relationships. While complex sales requiring deep human connection will remain human-led longer, routine sales functions are increasingly being handled by sophisticated AI systems that can analyze customer data, predict needs, and engage prospects across multiple channels."
+        },
+        {
+          "groupName": "Knowledge Work (Lower Complexity)",
+          "professions": [
+            "Junior Paralegals",
+            "Basic Bookkeeping",
+            "Standard Administrative Assistants",
+            "Junior Financial Analysts",
+            "Entry-Level Programmers"
+          ],
+          "automationSignals": [
+            "Legal tech startups focusing on document automation",
+            "Accounting software integrating AI for transaction processing",
+            "Virtual assistant platforms handling complex scheduling and correspondence",
+            "Increased use of no-code and AI-assisted programming tools",
+            "Financial institutions implementing automated analysis systems"
+          ],
+          "automationStages": [
+            {
+              "stage": "Task Automation",
+              "description": "Routine aspects of knowledge work handled by specialized AI tools",
+              "timeframe": "Already occurring"
+            },
+            {
+              "stage": "Process Automation",
+              "description": "End-to-end workflows managed by AI with human oversight",
+              "timeframe": "2-3 years"
+            },
+            {
+              "stage": "Cognitive Automation",
+              "description": "AI systems handling judgment-based tasks with minimal human input",
+              "timeframe": "4-5 years"
+            }
+          ],
+          "explanation": "Lower-complexity knowledge work is increasingly vulnerable as AI systems become more adept at processing information, following procedures, and making basic judgments. Tasks like document review, standard analysis, routine correspondence, and basic programming are being automated through specialized AI tools. The structured nature of these tasks makes them particularly suitable for current AI capabilities."
+        },
+        {
+          "groupName": "Creative Production (Template-Based)",
+          "professions": [
+            "Basic Graphic Designers",
+            "Standardized Video Editors",
+            "Template Website Developers",
+            "Stock Music Producers",
+            "Basic Animation Creators"
+          ],
+          "automationSignals": [
+            "Growth of AI design platforms for business materials",
+            "Video editing software with automated capabilities",
+            "Website builders with AI-powered design and content generation",
+            "Music production tools with AI composition features",
+            "Animation software with automated character movement"
+          ],
+          "automationStages": [
+            {
+              "stage": "Creative Assistance",
+              "description": "AI generating options and enhancing human creative work",
+              "timeframe": "Already occurring"
+            },
+            {
+              "stage": "Template Automation",
+              "description": "AI creating complete designs and content from specifications",
+              "timeframe": "1-3 years"
+            },
+            {
+              "stage": "Style Transfer",
+              "description": "AI adapting existing creative works to new formats and contexts",
+              "timeframe": "3-5 years"
+            }
+          ],
+          "explanation": "Template-based creative work is increasingly being automated as AI systems become better at understanding design principles, generating visual content, and adapting existing templates. While highly original creative work remains challenging for AI, routine design tasks, standardized editing, and template-based production are well-suited to current and near-future AI capabilities, particularly as these systems learn from vast libraries of existing creative work."
+        }
+      ]
+    },
+    {
+      "riskCategory": "Mid-Term Risk",
+      "timeframe": "5-8 Years",
+      "groups": [
+        {
+          "groupName": "Mid-Level Knowledge Work",
+          "professions": [
+            "Accountants (Standard Functions)",
+            "Mid-Level Programmers",
+            "Insurance Underwriters",
+            "Financial Advisors (Standard)",
+            "HR Specialists (Standard Functions)"
+          ],
+          "automationSignals": [
+            "Enterprise AI systems for accounting and financial management",
+            "Advanced code generation tools used in professional development",
+            "Insurance companies adopting automated risk assessment",
+            "Growth of robo-advisor platforms with human-like guidance",
+            "HR platforms with predictive analytics and automated management"
+          ],
+          "automationStages": [
+            {
+              "stage": "Advanced Assistance",
+              "description": "AI handling research and preparation for complex tasks",
+              "timeframe": "Already beginning"
+            },
+            {
+              "stage": "Judgment Automation",
+              "description": "AI making routine professional decisions with oversight",
+              "timeframe": "3-5 years"
+            },
+            {
+              "stage": "Integrated Expertise",
+              "description": "AI systems functioning as domain specialists with human collaboration",
+              "timeframe": "6-8 years"
+            }
+          ],
+          "explanation": "Mid-level knowledge work requires more judgment and domain expertise, but advancing AI systems are increasingly capable of handling these tasks. As machine learning models become more sophisticated at understanding specialized domains, they will progressively take on more complex accounting functions, programming tasks, risk assessment, financial planning, and HR processes, leaving humans to handle only the most complex or novel situations."
+        },
+        {
+          "groupName": "Analytical Professions",
+          "professions": [
+            "Business Analysts",
+            "Quality Assurance Specialists",
+            "Standard Project Managers",
+            "Risk Assessment Professionals",
+            "Compliance Officers"
+          ],
+          "automationSignals": [
+            "Business intelligence platforms with automated insight generation",
+            "Test automation frameworks handling complex quality verification",
+            "Project management platforms with AI task allocation and monitoring",
+            "Risk assessment tools incorporating predictive AI",
+            "Regulatory tech solutions automating compliance processes"
+          ],
+          "automationStages": [
+            {
+              "stage": "Data Analysis Automation",
+              "description": "AI generating insights and reports from complex data sets",
+              "timeframe": "1-3 years"
+            },
+            {
+              "stage": "Process Oversight",
+              "description": "AI monitoring systems and identifying issues with minimal human input",
+              "timeframe": "4-6 years"
+            },
+            {
+              "stage": "Strategic Recommendation",
+              "description": "AI providing decision support and strategic advice based on comprehensive analysis",
+              "timeframe": "6-8 years"
+            }
+          ],
+          "explanation": "Analytical professions involve evaluating data, identifying patterns, and making recommendations. While these roles currently require significant human judgment, advancing AI capabilities in pattern recognition, anomaly detection, and predictive analytics are increasingly able to perform these functions. As AI systems gain the ability to consider multiple factors and explain their reasoning, they will progressively take on more complex analytical tasks."
+        },
+        {
+          "groupName": "Routine Medical Services",
+          "professions": [
+            "Medical Transcriptionists",
+            "Diagnostic Technicians (Standard Procedures)",
+            "Pharmacy Technicians",
+            "Medical Billing Specialists",
+            "Basic Health Screening Services"
+          ],
+          "automationSignals": [
+            "Widespread adoption of voice-to-text in medical settings",
+            "Imaging AI systems approved for clinical use",
+            "Automated pharmacy dispensing systems in major hospitals",
+            "Healthcare administrative systems with AI billing capabilities",
+            "Remote monitoring technologies with automated analysis"
+          ],
+          "automationStages": [
+            {
+              "stage": "Administrative Automation",
+              "description": "AI handling medical documentation and administrative tasks",
+              "timeframe": "1-3 years"
+            },
+            {
+              "stage": "Diagnostic Assistance",
+              "description": "AI analyzing medical data and suggesting diagnoses with oversight",
+              "timeframe": "3-5 years"
+            },
+            {
+              "stage": "Procedural Automation",
+              "description": "AI systems handling routine medical procedures and monitoring",
+              "timeframe": "6-8 years"
+            }
+          ],
+          "explanation": "Routine medical services face increasing automation as AI becomes more capable at processing medical information, recognizing patterns in diagnostic data, and managing healthcare workflows. While regulatory and safety considerations may slow adoption compared to other fields, the precision and consistency of AI systems make them particularly valuable in medical contexts, especially for standardized procedures and administrative tasks."
+        }
+      ]
+    },
+    {
+      "riskCategory": "Longer-Term Risk",
+      "timeframe": "8-12 Years",
+      "groups": [
+        {
+          "groupName": "Specialized Manual Trades",
+          "professions": [
+            "Production Line Workers",
+            "Delivery Drivers",
+            "Warehouse Operators",
+            "Assembly Technicians",
+            "Basic Construction Workers"
+          ],
+          "automationSignals": [
+            "Increased investment in advanced manufacturing robotics",
+            "Commercial deployment of autonomous delivery vehicles",
+            "Warehouse automation beyond current pick-and-place robots",
+            "Prefabrication and 3D printing in construction",
+            "Successful pilot programs for robotic assembly of complex products"
+          ],
+          "automationStages": [
+            {
+              "stage": "Collaborative Robotics",
+              "description": "Robots working alongside humans for physical tasks",
+              "timeframe": "Already beginning"
+            },
+            {
+              "stage": "Routine Task Automation",
+              "description": "Automated systems handling predictable physical work",
+              "timeframe": "4-8 years"
+            },
+            {
+              "stage": "Adaptive Automation",
+              "description": "Advanced robotics adapting to changing conditions and requirements",
+              "timeframe": "8-12 years"
+            }
+          ],
+          "explanation": "Specialized manual trades face longer-term automation risk as robotic systems become more dexterous, adaptable, and capable of operating in unstructured environments. While the physical complexity of these jobs has historically protected them from automation, advances in robotics, computer vision, and AI are gradually overcoming these barriers. Jobs with predictable physical tasks in controlled environments will be automated first."
+        },
+        {
+          "groupName": "Semi-Creative Professional Services",
+          "professions": [
+            "Architects (Standard Designs)",
+            "Technical Writers",
+            "Standard Journalists",
+            "Mid-Level Marketers",
+            "Legal Researchers"
+          ],
+          "automationSignals": [
+            "Architectural software with generative design capabilities",
+            "Technical documentation systems with automated content generation",
+            "News organizations using AI for routine reporting",
+            "Advanced marketing platforms managing multi-channel campaigns",
+            "Legal research platforms with comprehensive analysis capabilities"
+          ],
+          "automationStages": [
+            {
+              "stage": "Research Automation",
+              "description": "AI gathering and synthesizing information for creative tasks",
+              "timeframe": "2-5 years"
+            },
+            {
+              "stage": "Collaborative Creation",
+              "description": "AI generating drafts and options for professional refinement",
+              "timeframe": "5-9 years"
+            },
+            {
+              "stage": "Domain-Specific Creation",
+              "description": "AI producing complete professional work in defined contexts",
+              "timeframe": "9-12 years"
+            }
+          ],
+          "explanation": "Semi-creative professional services involve applying expertise within established frameworks. While these roles require judgment and domain knowledge, they often follow patterns that AI can learn. As AI systems become more capable of understanding professional domains and generating appropriate content, they will increasingly handle routine aspects of these professions, though unique creative elements and client relationships will remain human-led longer."
+        },
+        {
+          "groupName": "Professional Services (Routine Elements)",
+          "professions": [
+            "General Practice Attorneys (Standard Cases)",
+            "General Practice Physicians (Routine Diagnoses)",
+            "Standard Teaching Roles",
+            "Financial Planners",
+            "Real Estate Agents"
+          ],
+          "automationSignals": [
+            "Legal platforms handling routine case preparation",
+            "Medical AI systems receiving regulatory approval for diagnostics",
+            "Adoption of personalized learning platforms in education",
+            "Financial planning systems offering comprehensive advice",
+            "Virtual property tours and automated transaction management"
+          ],
+          "automationStages": [
+            {
+              "stage": "Information Integration",
+              "description": "AI systems aggregating and analyzing professional information",
+              "timeframe": "3-6 years"
+            },
+            {
+              "stage": "Decision Support",
+              "description": "AI providing recommendations for professional judgment",
+              "timeframe": "6-9 years"
+            },
+            {
+              "stage": "Routine Case Management",
+              "description": "AI handling standard professional scenarios with oversight",
+              "timeframe": "9-12 years"
+            }
+          ],
+          "explanation": "Professional services with routine elements combine expertise with predictable workflows. While these professions require significant training and judgment, many aspects follow established procedures that AI can learn. As AI systems develop deeper domain understanding and better reasoning capabilities, they will increasingly handle routine professional tasks, though complex cases and interpersonal elements will remain human-led longer."
+        }
+      ]
+    },
+    {
+      "riskCategory": "Extended Timeline",
+      "timeframe": "12+ Years",
+      "groups": [
+        {
+          "groupName": "Complex Manual Work",
+          "professions": [
+            "Specialized Construction Trades",
+            "Fine Craftspeople",
+            "Electricians",
+            "Plumbers",
+            "Custom Fabricators"
+          ],
+          "automationSignals": [
+            "Advances in tactile robotics and fine motor control",
+            "Early adoption of specialized robots for dangerous trade work",
+            "Growth in prefabrication reducing on-site skilled labor needs",
+            "Development of AI systems that can interpret building codes and diagrams",
+            "Advanced sensor technologies enabling robots to work in complex environments"
+          ],
+          "automationStages": [
+            {
+              "stage": "Tool Augmentation",
+              "description": "Smart tools enhancing human capabilities and precision",
+              "timeframe": "3-7 years"
+            },
+            {
+              "stage": "Specialized Automation",
+              "description": "Robots handling specific complex tasks in structured environments",
+              "timeframe": "8-12 years"
+            },
+            {
+              "stage": "Adaptive Physical Work",
+              "description": "Advanced robotics systems adapting to unstructured environments",
+              "timeframe": "12-15+ years"
+            }
+          ],
+          "explanation": "Complex manual work involves physical dexterity, spatial awareness, and adaptive problem-solving in unstructured environments. These characteristics make full automation challenging with current technology. However, advances in robotics, sensors, and AI will gradually enable automation of specific aspects of these trades. The variability of working conditions and need for on-the-spot problem solving will keep humans involved for the extended future."
+        },
+        {
+          "groupName": "High-Touch Human Services",
+          "professions": [
+            "Therapists and Counselors",
+            "Specialized Nursing",
+            "Social Workers",
+            "Personal Trainers",
+            "Specialized Teaching"
+          ],
+          "automationSignals": [
+            "Advanced therapeutic chatbots with limited clinical applications",
+            "Robotic nursing assistants for routine physical tasks",
+            "Virtual reality platforms for therapy and rehabilitation",
+            "AI-powered personalized education with proven outcomes",
+            "Remote monitoring systems reducing need for in-person care"
+          ],
+          "automationStages": [
+            {
+              "stage": "Administrative Support",
+              "description": "AI handling documentation and routine communication",
+              "timeframe": "2-5 years"
+            },
+            {
+              "stage": "Augmented Service",
+              "description": "AI providing analysis and recommendations to human providers",
+              "timeframe": "6-10 years"
+            },
+            {
+              "stage": "Partial Automation",
+              "description": "AI handling routine aspects of care with human oversight",
+              "timeframe": "10-15+ years"
+            }
+          ],
+          "explanation": "High-touch human services rely on empathy, rapport, and interpersonal connection. These human elements remain extremely difficult to automate authentically. While AI can enhance these roles through better monitoring, data analysis, and administrative support, the core interpersonal work will likely remain human-led for the extended future. Regulatory considerations and client preferences will also slow automation in these sensitive domains."
+        },
+        {
+          "groupName": "Creative & Strategic Professions",
+          "professions": [
+            "Creative Directors",
+            "Senior Executive Leadership",
+            "Strategic Consultants",
+            "Research Scientists",
+            "Complex System Designers"
+          ],
+          "automationSignals": [
+            "AI systems generating novel research hypotheses",
+            "Strategic planning platforms with advanced scenario modeling",
+            "Design systems that can iterate through thousands of possibilities",
+            "Executive dashboards with strategic recommendations",
+            "AI co-authorship of research papers and patents"
+          ],
+          "automationStages": [
+            {
+              "stage": "Knowledge Augmentation",
+              "description": "AI providing comprehensive information and analysis",
+              "timeframe": "3-7 years"
+            },
+            {
+              "stage": "Creative Partnership",
+              "description": "AI generating options and iterations for human refinement",
+              "timeframe": "8-12 years"
+            },
+            {
+              "stage": "Strategic Assistance",
+              "description": "AI contributing to complex decision-making and innovation",
+              "timeframe": "12-15+ years"
+            }
+          ],
+          "explanation": "Creative and strategic professions involve generating novel ideas, managing complex stakeholder relationships, and making decisions with incomplete information. While AI can increasingly support these roles by processing vast amounts of information and generating options, the integration of multiple perspectives, ethical considerations, and true innovation will keep humans central to these roles for the extended future."
+        }
+      ]
+    },
+    {
+      "riskCategory": "Likely To Remain Human-Led",
+      "timeframe": "15+ Years",
+      "groups": [
+        {
+          "groupName": "Human-Connection Focused",
+          "professions": [
+            "Mental Health Professionals",
+            "Relationship Counselors",
+            "Specialized Caregivers",
+            "Community Leaders",
+            "Spiritual Leaders"
+          ],
+          "automationSignals": [
+            "Virtual reality therapy with limited therapeutic applications",
+            "AI companions serving specific emotional support functions",
+            "Remote care platforms reducing in-person caregiver requirements",
+            "Community engagement platforms with automated personalization",
+            "Digital platforms augmenting spiritual practice and community"
+          ],
+          "automationStages": [
+            {
+              "stage": "Digital Augmentation",
+              "description": "Technology extending human capacity and reach",
+              "timeframe": "Already occurring"
+            },
+            {
+              "stage": "Relationship Support",
+              "description": "AI assisting with information and routine interaction aspects",
+              "timeframe": "5-10 years"
+            },
+            {
+              "stage": "Partnership Model",
+              "description": "Human professionals working with AI to enhance connection",
+              "timeframe": "10-15+ years"
+            }
+          ],
+          "explanation": "Human-connection focused professions center on authentic emotional relationships, deep understanding of human experience, and moral/spiritual guidance. The genuine human connection at the core of these roles remains extremely difficult to automate. While technology will enhance these professions—expanding reach and providing support tools—the authentic human relationship element will keep these roles primarily human-led for the foreseeable future."
+        },
+        {
+          "groupName": "Advanced Creative Work",
+          "professions": [
+            "Innovative Artists",
+            "Novel Writers and Screenwriters",
+            "Original Composers",
+            "Trend-Setting Designers",
+            "Pioneering Directors"
+          ],
+          "automationSignals": [
+            "AI-generated art gaining recognition in specific contexts",
+            "AI co-authorship of creative works becoming more common",
+            "Generative models creating complete but derivative works",
+            "Creative tools with increasingly sophisticated AI capabilities",
+            "Emergence of human-AI creative partnerships in mainstream media"
+          ],
+          "automationStages": [
+            {
+              "stage": "Creative Enhancement",
+              "description": "AI tools expanding creative possibilities and efficiency",
+              "timeframe": "Already occurring"
+            },
+            {
+              "stage": "Co-Creation",
+              "description": "Humans and AI collaborating on creative projects",
+              "timeframe": "5-10 years"
+            },
+            {
+              "stage": "Creative Direction",
+              "description": "Humans guiding AI to realize specific creative visions",
+              "timeframe": "10-15+ years"
+            }
+          ],
+          "explanation": "Advanced creative work involves originating truly novel ideas, expressing profound human experiences, and creating works that resonate on a cultural level. While AI can increasingly generate impressive content, the most innovative creative work draws on lived human experience, cultural context, and intentional boundary-pushing that remains difficult for AI to authentically replicate. Creative roles will transform to emphasize uniquely human perspectives and direction."
+        },
+        {
+          "groupName": "Strategic Decision Making",
+          "professions": [
+            "C-Suite Executives",
+            "Pioneering Entrepreneurs",
+            "Transformational Leaders",
+            "Complex Negotiators",
+            "Visionary Innovators"
+          ],
+          "automationSignals": [
+            "Advanced decision support systems in executive contexts",
+            "AI-recommended business strategies gaining credibility",
+            "Emergence of AI tools for evaluating innovation potential",
+            "Negotiation support systems with scenario modeling",
+            "Strategic planning platforms with advanced predictive capabilities"
+          ],
+          "automationStages": [
+            {
+              "stage": "Information Advantage",
+              "description": "AI providing comprehensive analysis and forecasting",
+              "timeframe": "3-7 years"
+            },
+            {
+              "stage": "Decision Support",
+              "description": "AI generating and evaluating strategic options",
+              "timeframe": "7-12 years"
+            },
+            {
+              "stage": "Augmented Leadership",
+              "description": "Humans directing AI-enabled organizations with enhanced capabilities",
+              "timeframe": "12-15+ years"
+            }
+          ],
+          "explanation": "Strategic decision making at the highest levels involves integrating complex social dynamics, balancing competing values, taking calculated risks with incomplete information, and inspiring human organizations toward shared goals. While AI will increasingly provide valuable analysis and recommendations, the combination of social intelligence, moral judgment, cultural understanding, and inspirational leadership will keep humans central to these roles for the foreseeable future."
+        }
+      ]
+    }
+  ]
+}
