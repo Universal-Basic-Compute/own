@@ -105,22 +105,19 @@ export function DisplacementTab() {
     
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
+  
     // Check if dark mode is active
     const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
+  
     // Set background color
     ctx.fillStyle = isDarkMode ? '#1E1E1E' : '#FFFFFF';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
+  
     // Set dimensions
     const width = canvas.width;
     const height = canvas.height;
     const padding = 30;
-    
-    // Check if dark mode is active
-    const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
+  
     // Set colors based on theme
     const axisColor = isDarkMode ? '#6B7280' : '#E0E0E0'; // Medium gray for dark mode, light gray for light mode
     const textColor = isDarkMode ? '#9CA3AF' : '#616161'; // Lighter gray for dark mode, darker gray for light mode
