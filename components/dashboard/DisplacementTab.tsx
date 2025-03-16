@@ -217,8 +217,11 @@ export function DisplacementTab() {
     
     // Draw the S-curve
     ctx.lineWidth = 3;
-    ctx.moveTo(padding, height - padding);
     
+    // Make sure we're starting a new path
+    ctx.beginPath();
+    
+    // Draw the actual curve points
     for (let i = 0; i <= width - 2 * padding; i++) {
       const x = padding + i;
       const normalizedX = i / (width - 2 * padding);
@@ -235,6 +238,7 @@ export function DisplacementTab() {
       }
     }
     
+    // Make sure we're actually drawing the path
     ctx.stroke();
     
     // Add current position marker based on risk category
@@ -280,27 +284,38 @@ export function DisplacementTab() {
 
   useEffect(() => {
     if (canvasRef.current && riskCategory) {
-      // Set the canvas dimensions to match its display size
-      const canvas = canvasRef.current;
-      const rect = canvas.getBoundingClientRect();
+      const handleResize = () => {
+        if (!canvasRef.current) return;
+        
+        // Set the canvas dimensions to match its display size
+        const canvas = canvasRef.current;
+        const rect = canvas.getBoundingClientRect();
+        
+        // Set the actual canvas dimensions (important for proper rendering)
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+        
+        // Render the S-curve
+        renderSCurve(riskCategory, canvasRef);
+      };
       
-      // Set the actual canvas dimensions (important for proper rendering)
-      canvas.width = rect.width;
-      canvas.height = rect.height;
+      // Initial render
+      handleResize();
       
-      // Render the S-curve
-      renderSCurve(riskCategory, canvasRef);
+      // Add listener for window resize
+      window.addEventListener('resize', handleResize);
       
       // Add listener for color scheme changes
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      const handleChange = () => renderSCurve(riskCategory, canvasRef);
-      mediaQuery.addEventListener('change', handleChange);
+      const handleColorSchemeChange = () => renderSCurve(riskCategory, canvasRef);
+      mediaQuery.addEventListener('change', handleColorSchemeChange);
       
       return () => {
-        mediaQuery.removeEventListener('change', handleChange);
+        window.removeEventListener('resize', handleResize);
+        mediaQuery.removeEventListener('change', handleColorSchemeChange);
       };
     }
-  }, [riskCategory, canvasRef]);
+  }, [riskCategory]);
 
   const riskInfo = getRiskLevel(riskCategory);
 
