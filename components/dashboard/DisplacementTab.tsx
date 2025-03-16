@@ -116,9 +116,16 @@ export function DisplacementTab() {
     const height = canvas.height;
     const padding = 30;
     
+    // Check if dark mode is active
+    const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // Set colors based on theme
+    const axisColor = isDarkMode ? '#6B7280' : '#E0E0E0'; // Medium gray for dark mode, light gray for light mode
+    const textColor = isDarkMode ? '#9CA3AF' : '#616161'; // Lighter gray for dark mode, darker gray for light mode
+    
     // Draw axes
     ctx.beginPath();
-    ctx.strokeStyle = '#E0E0E0';
+    ctx.strokeStyle = axisColor;
     ctx.lineWidth = 1;
     ctx.moveTo(padding, padding);
     ctx.lineTo(padding, height - padding);
@@ -126,7 +133,7 @@ export function DisplacementTab() {
     ctx.stroke();
     
     // Add labels
-    ctx.fillStyle = '#616161';
+    ctx.fillStyle = textColor;
     ctx.font = '10px Inter';
     ctx.textAlign = 'center';
     
@@ -146,6 +153,26 @@ export function DisplacementTab() {
       const y = height - padding - i * yStep;
       ctx.fillText(`${percentage}%`, padding - 10, y + 3);
     });
+    
+    // Draw grid lines for better readability
+    ctx.beginPath();
+    ctx.strokeStyle = isDarkMode ? 'rgba(75, 85, 99, 0.2)' : 'rgba(224, 224, 224, 0.5)';
+    ctx.lineWidth = 0.5;
+    
+    // Horizontal grid lines
+    percentages.forEach((_, i) => {
+      const y = height - padding - i * yStep;
+      ctx.moveTo(padding, y);
+      ctx.lineTo(width - padding, y);
+    });
+    
+    // Vertical grid lines
+    years.forEach((_, i) => {
+      const x = padding + i * xStep;
+      ctx.moveTo(x, padding);
+      ctx.lineTo(x, height - padding);
+    });
+    ctx.stroke();
     
     // Draw S-curve based on risk category
     ctx.beginPath();
@@ -262,6 +289,15 @@ export function DisplacementTab() {
       
       // Render the S-curve
       renderSCurve(selectedCategory, canvasRef);
+      
+      // Add listener for color scheme changes
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const handleChange = () => renderSCurve(selectedCategory, canvasRef);
+      mediaQuery.addEventListener('change', handleChange);
+      
+      return () => {
+        mediaQuery.removeEventListener('change', handleChange);
+      };
     }
   }, [selectedCategory, canvasRef]);
 
