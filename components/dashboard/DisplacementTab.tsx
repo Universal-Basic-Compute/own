@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import displacementRiskData from "@/data/displacement-risk.json";
 
 export function DisplacementTab() {
@@ -9,6 +9,7 @@ export function DisplacementTab() {
   const [selectedProfession, setSelectedProfession] = useState("Data Entry Specialists");
   const [riskData, setRiskData] = useState<any>(null);
   const [professionDetails, setProfessionDetails] = useState<string>("");
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Find the selected category data
   useEffect(() => {
@@ -100,6 +101,170 @@ export function DisplacementTab() {
     }
   };
 
+  const renderSCurve = (category: string, canvasRef: React.RefObject<HTMLCanvasElement>) => {
+    if (!canvasRef.current) return;
+    
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    
+    // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Set dimensions
+    const width = canvas.width;
+    const height = canvas.height;
+    const padding = 30;
+    
+    // Draw axes
+    ctx.beginPath();
+    ctx.strokeStyle = '#E0E0E0';
+    ctx.lineWidth = 1;
+    ctx.moveTo(padding, padding);
+    ctx.lineTo(padding, height - padding);
+    ctx.lineTo(width - padding, height - padding);
+    ctx.stroke();
+    
+    // Add labels
+    ctx.fillStyle = '#616161';
+    ctx.font = '10px Inter';
+    ctx.textAlign = 'center';
+    
+    // X-axis labels (years)
+    const years = ['Now', '+5 yrs', '+10 yrs', '+15 yrs', '+20 yrs'];
+    const xStep = (width - 2 * padding) / (years.length - 1);
+    years.forEach((year, i) => {
+      const x = padding + i * xStep;
+      ctx.fillText(year, x, height - padding + 15);
+    });
+    
+    // Y-axis labels (percentage)
+    ctx.textAlign = 'right';
+    const percentages = [0, 25, 50, 75, 100];
+    const yStep = (height - 2 * padding) / (percentages.length - 1);
+    percentages.forEach((percentage, i) => {
+      const y = height - padding - i * yStep;
+      ctx.fillText(`${percentage}%`, padding - 10, y + 3);
+    });
+    
+    // Draw S-curve based on risk category
+    ctx.beginPath();
+    
+    // Different curve parameters based on risk category
+    let inflectionPoint = 0.5; // Default (mid-point)
+    let steepness = 5; // Default steepness
+    
+    switch(category) {
+      case "Immediate Risk":
+        inflectionPoint = 0.15; // Early inflection
+        steepness = 8; // Steeper curve
+        ctx.strokeStyle = '#FF5252'; // Error color
+        break;
+      case "Near-Term Risk":
+        inflectionPoint = 0.25;
+        steepness = 7;
+        ctx.strokeStyle = '#FFAB00'; // Warning color
+        break;
+      case "Mid-Term Risk":
+        inflectionPoint = 0.4;
+        steepness = 6;
+        ctx.strokeStyle = '#FFAB00'; // Warning color
+        break;
+      case "Longer-Term Risk":
+        inflectionPoint = 0.6;
+        steepness = 5;
+        ctx.strokeStyle = '#0066FF'; // AI blue
+        break;
+      case "Extended Timeline":
+        inflectionPoint = 0.75;
+        steepness = 4;
+        ctx.strokeStyle = '#00CC99'; // Financial green
+        break;
+      case "Likely To Remain Human-Led":
+        inflectionPoint = 0.85;
+        steepness = 3;
+        ctx.strokeStyle = '#00CC99'; // Financial green
+        break;
+      default:
+        ctx.strokeStyle = '#616161'; // Medium dark
+    }
+    
+    // Draw the S-curve
+    ctx.lineWidth = 3;
+    ctx.moveTo(padding, height - padding);
+    
+    for (let i = 0; i <= width - 2 * padding; i++) {
+      const x = padding + i;
+      const normalizedX = i / (width - 2 * padding);
+      
+      // Sigmoid function: 1 / (1 + e^(-steepness * (x - inflectionPoint)))
+      const sigmoid = 1 / (1 + Math.exp(-steepness * (normalizedX - inflectionPoint)));
+      
+      const y = height - padding - sigmoid * (height - 2 * padding);
+      
+      if (i === 0) {
+        ctx.moveTo(x, y);
+      } else {
+        ctx.lineTo(x, y);
+      }
+    }
+    
+    ctx.stroke();
+    
+    // Add current position marker based on risk category
+    let currentPosition = 0;
+    switch(category) {
+      case "Immediate Risk":
+        currentPosition = 0.1;
+        break;
+      case "Near-Term Risk":
+        currentPosition = 0.2;
+        break;
+      case "Mid-Term Risk":
+        currentPosition = 0.3;
+        break;
+      case "Longer-Term Risk":
+        currentPosition = 0.4;
+        break;
+      case "Extended Timeline":
+        currentPosition = 0.5;
+        break;
+      case "Likely To Remain Human-Led":
+        currentPosition = 0.6;
+        break;
+    }
+    
+    const markerX = padding + currentPosition * (width - 2 * padding);
+    const normalizedMarkerX = currentPosition;
+    const sigmoid = 1 / (1 + Math.exp(-steepness * (normalizedMarkerX - inflectionPoint)));
+    const markerY = height - padding - sigmoid * (height - 2 * padding);
+    
+    // Draw marker
+    ctx.beginPath();
+    ctx.fillStyle = '#0066FF';
+    ctx.arc(markerX, markerY, 6, 0, 2 * Math.PI);
+    ctx.fill();
+    
+    // Add "You are here" label
+    ctx.fillStyle = '#0066FF';
+    ctx.font = 'bold 10px Inter';
+    ctx.textAlign = 'center';
+    ctx.fillText("You are here", markerX, markerY - 10);
+  };
+
+  useEffect(() => {
+    if (canvasRef.current) {
+      // Set the canvas dimensions to match its display size
+      const canvas = canvasRef.current;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      
+      // Render the S-curve
+      renderSCurve(selectedCategory, canvasRef);
+    }
+  }, [selectedCategory, canvasRef]);
+
   const riskInfo = getRiskLevel(selectedCategory);
 
   return (
@@ -184,6 +349,22 @@ export function DisplacementTab() {
                     style={{ width: `${riskInfo.percentage}%` }}
                   ></div>
                 </div>
+              </div>
+              
+              {/* S-Curve Automation Graph */}
+              <div className="mt-6 mb-6">
+                <h4 className="text-sm font-medium text-medium-dark mb-2">Job Automation Curve</h4>
+                <div className="bg-white dark:bg-night-mode rounded-lg p-4 border border-light-medium dark:border-medium-dark">
+                  <canvas 
+                    ref={canvasRef} 
+                    className="w-full h-48"
+                    aria-label="S-curve showing job automation over time"
+                  ></canvas>
+                </div>
+                <p className="text-xs text-medium-dark mt-2">
+                  This S-curve shows the projected percentage of jobs in your field that will be automated over time.
+                  The steepness and timing of the curve are based on your risk category.
+                </p>
               </div>
               
               <div className="mb-6">
